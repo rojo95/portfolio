@@ -29,7 +29,7 @@ const PLATFORMS = {
     ANDROID: 4,
 } as const;
 
-const urlBase = "/portfolio";
+const urlBase = import.meta.env.BASE_URL;
 
 export default function Projects() {
     const { t } = useTranslation();
@@ -190,7 +190,7 @@ export default function Projects() {
                     ) : (
                         data.map((values, key) => (
                             <Link
-                                href={`${urlBase}/projects/${values.id}`}
+                                href={`${urlBase}projects/${values.id}`}
                                 key={key}
                                 className={`${
                                     loading ? "fade-out" : "fade-in"

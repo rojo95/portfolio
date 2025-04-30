@@ -6,7 +6,7 @@ import imagen from "@assets/images/johan.webp";
 import "./Home.css";
 import { useLoading } from "@hooks/useLoading/useLoading";
 
-const urlBase = "/portfolio";
+const urlBase = import.meta.env.BASE_URL;
 
 export default function PresentationSection() {
     const { t } = useTranslation();
@@ -82,7 +82,7 @@ export default function PresentationSection() {
                             })}
                         </p>
                         <Link
-                            href={urlBase + "/projects"}
+                            href={urlBase + "projects"}
                             className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none dark:focus:ring-cyan-800 shadow-xl hover:shadow-cyan-500/50 transition"
                         >
                             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
@@ -101,7 +101,7 @@ export default function PresentationSection() {
                 >
                     <div className="lg:size-[650px]">
                         <div className="image-container transition dark:hover:drop-shadow-[0_10px_10px_rgba(22,205,229,0.8)] hover:drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)] cursor-pointer">
-                            <Link href={urlBase + "/about"}>
+                            <Link href={urlBase + "about"}>
                                 <div className="glitch-image-container">
                                     <img src={imagen} alt="Johan" />
                                     <div className="glitch__layers">

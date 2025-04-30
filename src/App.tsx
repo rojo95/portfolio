@@ -12,60 +12,48 @@ import Projects from "./views/Projects/Projects";
 import ProjectDetails from "./views/ProjectDetails/ProjectDetails";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
-import { IoIosBusiness, IoMdDesktop, IoMdHome, IoMdMail } from "react-icons/io";
+import { IoIosBusiness, IoMdDesktop, IoMdHome } from "react-icons/io";
 import { FaGithub, FaUserTie } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 
-const urlBase = "/portfolio";
+const urlBase = import.meta.env.BASE_URL;
 
 const routes = [
     {
         name: "home",
-        link: "/",
+        link: "",
         component: Home,
         hidde: false,
         icon: <IoMdHome />,
     },
     {
         name: "projects",
-        link: "/projects",
+        link: "projects",
         component: Projects,
         hidde: false,
         icon: <IoMdDesktop />,
     },
     {
         name: "project-detail",
-        link: "/projects/:id",
+        link: "projects/:id",
         component: ProjectDetails,
         hidde: true,
         icon: <IoIosBusiness />,
     },
     {
         name: "workExperience",
-        link: "/work-experience",
+        link: "work-experience",
         component: WorkExperience,
         hidde: false,
         icon: <IoIosBusiness />,
     },
     {
         name: "about",
-        link: "/about",
+        link: "about",
         component: About,
         hidde: false,
         icon: <FaUserTie />,
-    },
-    {
-        name: "contact",
-        link: "/contact",
-        component: () => (
-            <>
-                <title>{`Johan Román - Coming Soon`}</title>
-                Contactame Próximamente...
-            </>
-        ),
-        hidde: true,
-        icon: <IoMdMail />,
     },
 ] as const;
 
@@ -218,7 +206,7 @@ function App() {
                             />
                         ))}
                         <Route>
-                            <Redirect to={urlBase + "/"} />
+                            <Redirect to={urlBase} />
                         </Route>
                     </Switch>
                 </main>

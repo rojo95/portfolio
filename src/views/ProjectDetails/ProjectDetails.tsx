@@ -19,7 +19,7 @@ interface Position {
     y: number;
 }
 
-const urlBase = "/portfolio";
+const urlBase = import.meta.env.BASE_URL;
 
 export default function ProductDetails({ params }: ProjectDetailsProps) {
     const { t } = useTranslation();
@@ -137,7 +137,7 @@ export default function ProductDetails({ params }: ProjectDetailsProps) {
                         {data?.gallery?.length === 1 ? ( // Verifica si hay un solo elemento
                             <div className="border rounded-lg border-gray-400 cursor-pointer">
                                 <img
-                                    src={`${urlBase}/images/projects/${data.gallery[0].img}`}
+                                    src={`${urlBase}images/projects/${data.gallery[0].img}`}
                                     alt={data.gallery[0].img}
                                     className="w-full h-96 object-cover rounded-lg"
                                     onClick={() =>
@@ -155,7 +155,7 @@ export default function ProductDetails({ params }: ProjectDetailsProps) {
                                         className="border rounded-lg border-gray-400 cursor-pointer"
                                     >
                                         <img
-                                            src={`${urlBase}/images/projects/${img}`}
+                                            src={`${urlBase}images/projects/${img}`}
                                             alt={img}
                                             className="w-full h-96 object-cover rounded-lg"
                                             onMouseDown={handleImageMouseDown}
@@ -204,7 +204,7 @@ export default function ProductDetails({ params }: ProjectDetailsProps) {
                                                     {image ? (
                                                         <img
                                                             title={name}
-                                                            src={`${urlBase}/images/knowledge/${image}`}
+                                                            src={`${urlBase}images/knowledge/${image}`}
                                                             alt={name}
                                                             className="max-w-full max-h-full drop-shadow-lg text-gray-700 object-contain"
                                                         />
@@ -249,7 +249,7 @@ export default function ProductDetails({ params }: ProjectDetailsProps) {
                 />
                 <img
                     ref={imageRef}
-                    src={`${urlBase}/images/projects/${fullscreenImage}`}
+                    src={`${urlBase}images/projects/${fullscreenImage}`}
                     alt="Fullscreen"
                     onLoad={() => setIsLoading(false)}
                     className={`max-w-full z-20 transition-transform transition-opacity ease-in-out ${

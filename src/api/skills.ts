@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const URL_BASE = "/portfolio/";
+const URL_BASE = import.meta.env.BASE_URL;
 
 export type Category = {
     id: number;

@@ -8,6 +8,8 @@ import { FaCode } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { useLoading } from "@hooks/useLoading/useLoading";
 
+const urlBase = import.meta.env.BASE_URL;
+
 export default function WorkExperience() {
     const { t, i18n } = useTranslation();
     const { loading } = useLoading();
@@ -227,12 +229,12 @@ export default function WorkExperience() {
                                         >
                                             <img
                                                 className="card-background-logo"
-                                                src={`images/works/${value.image}`}
+                                                src={`${urlBase}images/works/${value.image}`}
                                                 alt={value.image}
                                             />
                                             <img
                                                 className="card-logo"
-                                                src={`images/works/${value.logo}`}
+                                                src={`${urlBase}images/works/${value.logo}`}
                                                 alt={value.logo}
                                             />
                                         </div>
@@ -269,7 +271,7 @@ export default function WorkExperience() {
                                     <div className="white-circle" />
                                     <img
                                         className="watermark"
-                                        src={`images/works/${selected.logo}`}
+                                        src={`${urlBase}images/works/${selected.logo}`}
                                         alt={selected.logo}
                                     />
                                     <div className="info">
@@ -307,7 +309,7 @@ export default function WorkExperience() {
                                                             {image ? (
                                                                 <img
                                                                     title={name}
-                                                                    src={`/images/knowledge/${image}`}
+                                                                    src={`${urlBase}images/knowledge/${image}`}
                                                                     alt={name}
                                                                     className="max-w-full max-h-full drop-shadow-lg text-gray-700 object-contain"
                                                                 />
@@ -343,11 +345,11 @@ export default function WorkExperience() {
                                     <div className="carnet-image-container absolute rounded-md overflow-hidden drop-shadow-lg face-content">
                                         <img
                                             className="carnet-image-background absolute top-0 left-0 face-content"
-                                            src={`images/works/${selected.image}`}
+                                            src={`${urlBase}images/works/${selected.image}`}
                                         />
                                         <img
                                             className="carnet-image face-content"
-                                            src={`images/works/${selected.idCard}`}
+                                            src={`${urlBase}images/works/${selected.idCard}`}
                                         />
                                     </div>
                                     <div className="absolute info px-5 face-content">
@@ -363,7 +365,7 @@ export default function WorkExperience() {
                                     <div className="bottom-bar face-content" />
                                     <div className="absolute logo face-content">
                                         <img
-                                            src={`images/works/${selected.logo}`}
+                                            src={`${urlBase}images/works/${selected.logo}`}
                                         />
                                     </div>
                                     <div className="absolute expiration text-white face-content">
