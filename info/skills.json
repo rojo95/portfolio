@@ -1,0 +1,432 @@
+{
+    "categories": [
+        { "id": 1, "name": "langs" },
+        { "id": 2, "name": "langWebD" },
+        { "id": 3, "name": "frameworks" },
+        { "id": 4, "name": "entornoEjecucion" },
+        { "id": 5, "name": "sO" },
+        { "id": 6, "name": "servidores" },
+        { "id": 7, "name": "virtualizacion" },
+        { "id": 8, "name": "libs" },
+        { "id": 9, "name": "cms" },
+        { "id": 10, "name": "ddbb" },
+        { "id": 11, "name": "version" }
+    ],
+    "technologies": [
+        {
+            "id": 1,
+            "category_id": 1,
+            "name": "PHP",
+            "img": "php.webp",
+            "link": "https://www.php.net/manual/es/intro-whatis.php",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 2,
+            "category_id": 1,
+            "name": "JavaScript",
+            "img": "javascript.webp",
+            "link": "https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript#una_definici%C3%B3n_de_alto_nivel",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 3,
+            "category_id": 1,
+            "name": "Yaml",
+            "img": "yaml.webp",
+            "link": "https://es.wikipedia.org/wiki/YAML",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 4,
+            "category_id": 1,
+            "name": "TypeScript",
+            "img": "typescript.webp",
+            "link": "https://www.typescriptlang.org/",
+            "lang": null,
+            "description": null
+        },
+
+        {
+            "id": 5,
+            "category_id": 2,
+            "name": "CSS 3",
+            "img": "css3.webp",
+            "link": "https://www.w3.org/Style/CSS/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 6,
+            "category_id": 2,
+            "name": "HTML 5",
+            "img": "html5.webp",
+            "link": "https://es.wikipedia.org/wiki/HTML",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 7,
+            "category_id": 2,
+            "name": "SCSS",
+            "img": "scss.webp",
+            "link": "https://sass-lang.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 8,
+            "category_id": 2,
+            "name": "Twig",
+            "img": "twig-logo.webp",
+            "link": "https://twig.symfony.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 9,
+            "category_id": 2,
+            "name": "Material UI",
+            "img": "material-ui-logo.webp",
+            "link": "https://mui.com/material-ui/getting-started/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 10,
+            "category_id": 2,
+            "name": "Vuetify 3",
+            "img": "vuetify-logo-v3.webp",
+            "link": "https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 11,
+            "category_id": 2,
+            "name": "Bootstrap",
+            "img": "bootstrap.webp",
+            "link": "https://getbootstrap.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 12,
+            "category_id": 2,
+            "name": "Tailwind Css",
+            "img": "tailwind-css.webp",
+            "link": "https://tailwindcss.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 13,
+            "category_id": 2,
+            "name": "Styled Components",
+            "img": "styled_components.webp",
+            "link": "https://styled-components.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 14,
+            "category_id": 2,
+            "name": "Figma",
+            "img": "figma.webp",
+            "link": "https://www.figma.com/",
+            "lang": null,
+            "description": null
+        },
+
+        {
+            "id": 15,
+            "category_id": 3,
+            "name": "React JS / React Native",
+            "img": "react.webp",
+            "link": "https://legacy.reactjs.org/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 16,
+            "category_id": 3,
+            "name": "Laravel",
+            "img": "laravel.webp",
+            "link": "https://laravel.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 17,
+            "category_id": 3,
+            "name": "Nuxt Js",
+            "img": "nuxt.webp",
+            "link": "https://nuxt.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 18,
+            "category_id": 3,
+            "name": "Next Js",
+            "img": "next.webp",
+            "link": "https://nextjs.org/learn/foundations/about-nextjs/what-is-nextjs",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 19,
+            "category_id": 3,
+            "name": "Angular",
+            "img": "angular.webp",
+            "link": "https://angular.io/guide/what-is-angular",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 20,
+            "category_id": 3,
+            "name": "Vue JS",
+            "img": "vue.webp",
+            "link": "https://vuejs.org/guide/introduction.html#what-is-vue",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 21,
+            "category_id": 3,
+            "name": "Ionic",
+            "img": "ionic.webp",
+            "link": "https://ionicframework.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 22,
+            "category_id": 3,
+            "name": "Express.JS",
+            "img": "expressjs.webp",
+            "link": "https://expressjs.com/",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 23,
+            "category_id": 3,
+            "name": "Symfony 6",
+            "img": "symfony.webp",
+            "link": "https://symfony.com/",
+            "lang": null,
+            "description": null
+        },
+
+        {
+            "id": 24,
+            "category_id": 4,
+            "name": "Node JS",
+            "img": "node.webp",
+            "link": "https://nodejs.org/es",
+            "lang": null,
+            "description": null
+        },
+
+        {
+            "id": 25,
+            "category_id": 5,
+            "name": "Windows",
+            "img": "windows.webp",
+            "link": "https://es.wikipedia.org/wiki/Microsoft_Windows",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 26,
+            "category_id": 5,
+            "name": "Ubuntu",
+            "img": "ubuntu.webp",
+            "link": "https://es.wikipedia.org/wiki/Ubuntu",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 27,
+            "category_id": 5,
+            "name": "Linux Mint",
+            "img": "linux_mint.webp",
+            "link": "https://es.wikipedia.org/wiki/Linux_Mint",
+            "lang": null,
+            "description": null
+        },
+        {
+            "id": 28,
+            "category_id": 5,
+            "name": "Debian",
+            "img": "debian.webp",
+            "link": "https://es.wikipedia.org/wiki/Debian_GNU/Linux",
+            "lang": null,
+            "description": null
+        },
+
+        {
+            "id": 29,
+            "category_id": 6,
+            "name": "Apache HTTP Server",
+            "img": "apache.webp",
+            "link": "https://httpd.apache.org/",
+            "lang": null,
+            "description": null
+        },
+
+        {
+            "id": 30,
+            "category_id": 7,
+            "name": "Docker",
+            "img": "docker-logo.webp",
+            "link": "https://docs.docker.com/get-started/overview/",
+            "lang": null,
+            "description": null
+        },
+
+        {
+            "id": 31,
+            "category_id": 8,
+            "name": "Leaflet",
+            "img": "leaflet.webp",
+            "link": "https://leafletjs.com",
+            "lang": "JavaScript",
+            "description": "Leaflet es la principal biblioteca JavaScript de código abierto para mapas interactivos compatibles con dispositivos móviles..."
+        },
+        {
+            "id": 32,
+            "category_id": 8,
+            "name": "ng-bootstrap",
+            "img": "ng-bootstrap.webp",
+            "link": "https://ng-bootstrap.github.io/#/home",
+            "lang": "JavaScript",
+            "description": ""
+        },
+        {
+            "id": 33,
+            "category_id": 8,
+            "name": "react-rnd",
+            "img": "react-rnd.webp",
+            "link": "https://www.npmjs.com/package/react-rnd",
+            "lang": "JavaScript",
+            "description": ""
+        },
+        {
+            "id": 34,
+            "category_id": 8,
+            "name": "jQuery",
+            "img": "jquery.webp",
+            "link": "https://www.npmjs.com/package/react-rnd",
+            "lang": "JavaScript",
+            "description": ""
+        },
+        {
+            "id": 35,
+            "category_id": 8,
+            "name": "Chart.js",
+            "img": "chartjs.webp",
+            "link": "https://www.chartjs.org/",
+            "lang": "JavaScript",
+            "description": ""
+        },
+        {
+            "id": 36,
+            "category_id": 8,
+            "name": "A-Frame",
+            "img": "aframe-logo.webp",
+            "link": "https://aframe.io/docs/1.4.0/introduction/",
+            "lang": "JavaScript",
+            "description": ""
+        },
+        {
+            "id": 37,
+            "category_id": 8,
+            "name": "Three JS",
+            "img": "three-js.webp",
+            "link": "https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene",
+            "lang": "JavaScript",
+            "description": ""
+        },
+
+        {
+            "id": 38,
+            "category_id": 9,
+            "name": "WordPress",
+            "img": "wordpress.webp",
+            "link": "https://wordpress.com",
+            "lang": null,
+            "description": ""
+        },
+
+        {
+            "id": 39,
+            "category_id": 10,
+            "name": "Mongo DB",
+            "img": "mongo.webp",
+            "link": "https://www.mongodb.com/es/what-is-mongodb",
+            "lang": null,
+            "description": ""
+        },
+        {
+            "id": 40,
+            "category_id": 10,
+            "name": "PostgreSQL",
+            "img": "postgresql.webp",
+            "link": "https://www.postgresql.org/",
+            "lang": null,
+            "description": ""
+        },
+        {
+            "id": 41,
+            "category_id": 10,
+            "name": "MySQL",
+            "img": "mysql.webp",
+            "link": "https://dev.mysql.com/doc/refman/8.0/en/what-is-mysql.html",
+            "lang": null,
+            "description": ""
+        },
+        {
+            "id": 42,
+            "category_id": 10,
+            "name": "SQLite",
+            "img": "sqlite.webp",
+            "link": "https://www.sqlite.org/index.html",
+            "lang": null,
+            "description": ""
+        },
+        {
+            "id": 43,
+            "category_id": 10,
+            "name": "Mycrosoft SQL Server",
+            "img": "sqlserver.webp",
+            "link": "https://learn.microsoft.com/en-us/sql/sql-server/what-is-sql-server?view=sql-server-ver16",
+            "lang": null,
+            "description": ""
+        },
+
+        {
+            "id": 44,
+            "category_id": 11,
+            "name": "GitHub",
+            "img": "github.webp",
+            "link": "https://github.com/",
+            "lang": null,
+            "description": ""
+        },
+        {
+            "id": 45,
+            "category_id": 11,
+            "name": "GitLab",
+            "img": "gitlab.webp",
+            "link": "https://about.gitlab.com/",
+            "lang": null,
+            "description": ""
+        }
+    ]
+}
