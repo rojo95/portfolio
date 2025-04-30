@@ -1,0 +1,533 @@
+:root {
+    --deepth-blue: #002f7b;
+    --blue: #01509b;
+    --time-line-color: #434343;
+    --green-color: #22c55e;
+    --light-blue: #147dc8;
+}
+
+.view-works {
+    width: 100%;
+}
+.work-container {
+    width: 100%;
+}
+.position {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+.time-line {
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    background: var(--time-line-color);
+}
+.time-list {
+    overflow-y: auto;
+    max-height: 90vh;
+    padding-bottom: 50px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.time-list::-webkit-scrollbar,
+.time-line,
+.time-conector {
+    display: none;
+}
+.time-list .list-item:last-child .time-line {
+    height: 50% !important;
+}
+
+.list-item {
+    position: relative !important;
+    display: flex !important;
+}
+.time-conector {
+    position: absolute;
+    width: 0%;
+    height: 5px;
+    top: 50%;
+    background: var(--time-line-color);
+    animation: connect 1s forwards;
+}
+.time-conector .connected {
+    position: absolute;
+    transition-duration: 0.2s;
+    height: 100%;
+    background: var(--green-color);
+    width: 0%;
+}
+
+.time-conector .connected.active {
+    width: 100%;
+}
+.time-node {
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--time-line-color);
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 100%;
+}
+
+.time-node.active {
+    background-color: var(--green-color);
+    filter: drop-shadow(0 0 0.75rem var(--green-color));
+}
+
+.rotation-in {
+    opacity: 0;
+    animation: rotationIn 0.3s forwards;
+    perspective: 1000px;
+}
+.rotation-in.left {
+    transform: translateX(-50px);
+}
+.rotation-in.right {
+    transform: translateX(50px);
+}
+
+@keyframes rotationIn {
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.work-info {
+    width: 100%;
+}
+
+.work-card {
+    background-color: white;
+    width: 350px;
+    height: 144px !important;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+    filter: drop-shadow(15px 15px 14px #101010);
+    text-align: left;
+}
+.work-image-div {
+    width: 230px; /* Ancho del contenedor */
+    height: 144px; /* Altura del contenedor, ajusta según sea necesario */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    position: relative; /* Necesario para posicionar los elementos hijos */
+    display: grid; /* Usar grid para centrar el contenido */
+    place-items: center; /* Centra los elementos hijos */
+}
+
+.card-background-logo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 150px;
+    width: auto;
+    object-fit: cover;
+}
+
+.card-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: 80%;
+    max-height: 80%;
+    filter: drop-shadow(10px 10px 3px #101010);
+}
+
+.carnet-roll {
+    transform-style: preserve-3d;
+    animation: carnetRoll 1s forwards;
+}
+
+@keyframes carnetRoll {
+    0% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+.carnet-container {
+    perspective: 1000px;
+}
+
+.carnet {
+    position: relative;
+    width: 300px;
+    height: 500px;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.carnet-back,
+.carnet-front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.face-content {
+    backface-visibility: hidden;
+}
+
+.carnet.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.carnet-back {
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+    z-index: 2;
+    border-radius: 10px;
+    background-color: var(--blue);
+}
+.carnet-back .info {
+    padding-left: 20px;
+    padding-right: 20px;
+    position: absolute;
+    top: 30px;
+    color: var(--time-line-color);
+    font-size: 14px;
+}
+.carnet-back .white-circle {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    background-color: white;
+    top: -85px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 100%;
+}
+.carnet-back .info .name {
+    font-weight: 800;
+    text-align: center;
+}
+.carnet-back .info p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+.carnet-back .watermark {
+    position: absolute;
+    z-index: 1;
+    filter: invert(50%) grayscale(90%);
+    opacity: 15%;
+    width: 200px;
+}
+.carnet-back .roles {
+    padding-left: 15px;
+}
+.carnet-back .roles li {
+    font-size: 13px;
+    text-align: left;
+    padding-left: 10px;
+}
+.carnet-back .qr {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.carnet-back .skills {
+    position: absolute;
+    bottom: 10px;
+    width: 200px;
+    right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.carnet-back .skills img {
+    width: 20px;
+}
+.skill-div {
+    background-color: white;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carnet-front {
+    background-color: var(--blue) !important;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.carnet-image-container {
+    width: 130px;
+    height: 170px;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid white;
+}
+.carnet-image-background,
+.carnet-image {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.carnet-image-background {
+    filter: blur(0px);
+}
+.carnet-image {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    filter: drop-shadow(15px 15px 10px #101010);
+}
+.carnet-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carnet-front .info {
+    top: 270px;
+    width: 100%;
+}
+.carnet-front .title {
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    color: white;
+    font-weight: 800;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+.carnet-front .logo {
+    bottom: 40px;
+    height: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.carnet-front .logo img {
+    object-fit: contain;
+}
+.carnet-front .expiration {
+    bottom: 0px;
+    padding: 20px;
+    width: 100%;
+}
+.carnet-front .primary-top {
+    position: absolute;
+    width: 400px;
+    height: 90px;
+    background: var(--deepth-blue);
+    border-radius: 0px;
+    border-radius: 100%;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.carnet-front .secondary-top {
+    position: absolute;
+    width: 150%;
+    height: 90px;
+    background-color: var(--light-blue);
+    border-radius: 100%;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.carnet-front .base-color {
+    width: 600px;
+    height: 300px;
+    background-color: white;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.carnet-front .blue-circle {
+    width: 600px;
+    height: 300px;
+    background-color: #0f7fd4;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+}
+.carnet-front .overlay {
+    width: 40px;
+    height: 5px;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5; /* Asegúrate de que esté delante */
+}
+
+.bottom-bar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 45px;
+    background-color: var(--deepth-blue);
+}
+
+.close-button {
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.carnet-background-div {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    opacity: 0.5;
+    background-color: #101010;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+    position: absolute;
+}
+
+@keyframes connect {
+    to {
+        width: 40%;
+    }
+}
+
+@media (max-width: 640px) {
+    .work-card {
+        width: 310px;
+        margin-bottom: 10px;
+    }
+    .list-item:first-child .work-card {
+        margin-top: 20px;
+    }
+    .list-item:last-child .work-card {
+        margin-bottom: 0px;
+    }
+    .list-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .rotation-in {
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: rotationIn 0.3s forwards;
+        perspective: 1000px;
+    }
+}
+@media (min-width: 640px) {
+    .time-conector,
+    .time-line {
+        display: inline !important;
+    }
+    .work-card {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .time-line {
+        right: 0px;
+    }
+    .time-node.from-left {
+        right: 0px;
+    }
+    .time-node.from-right {
+        right: 0px;
+    }
+    .time-conector.from-right {
+        right: -8px;
+    }
+    .time-conector.from-left {
+        right: -8px;
+    }
+    .list-item.start {
+        justify-content: flex-start !important;
+    }
+    .list-item.end {
+        justify-content: flex-start !important;
+    }
+    .time-conector .connected.active.left {
+        left: 0px;
+    }
+    .time-conector .connected.active.right {
+        left: 0px;
+    }
+}
+@media (min-width: 768px) {
+    .close-button {
+        display: none;
+    }
+    .carnet-background-div {
+        display: none;
+    }
+}
+@media (min-width: 1024px) {
+    .work-card {
+        width: 400px;
+    }
+}
+@media (min-width: 1280px) {
+    .work-card {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .time-line {
+        left: 51%;
+    }
+    .time-node.from-left {
+        right: -12px;
+    }
+    .time-node.from-right {
+        left: -8px;
+    }
+    .list-item.start {
+        justify-content: flex-end !important;
+    }
+    .list-item.end {
+        justify-content: flex-start !important;
+    }
+    .time-conector.from-right {
+        left: 51%;
+    }
+    .time-conector.from-left {
+        right: 49%;
+    }
+    .time-conector .connected.active.left {
+        left: 0px;
+    }
+    .time-conector .connected.active.right {
+        right: 0px;
+    }
+}
+@media (min-width: 1536px) {
+    .work-card {
+        width: 400px;
+    }
+}

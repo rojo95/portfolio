@@ -1,0 +1,815 @@
+{
+    "projects": [
+        {
+            "id": 12,
+            "title": "Eurekacloud",
+            "platforms": [1, 2, 3, 4],
+            "type": [
+                "App Telefónica",
+                "Aplicación Presupuestaria",
+                "Responsive"
+            ],
+            "thumb": "eurekacloud_thumb.webp",
+            "description": "Eurekacloud es una aplicación móvil multiplataforma orientada a la gestión presupuestaria, diseñada para funcionar en dispositivos iOS, Android, Web y Desktop gracias a tecnologías como React Native y TypeScript. Su enfoque principal es ofrecer una experiencia fluida y responsive para la creación, edición y seguimiento de presupuestos complejos en entornos profesionales. La aplicación permite gestionar presupuestos detallados mediante capítulos, subcapítulos, archivos adjuntos y actividades de seguimiento, con interfaces intuitivas y organizadas. Los usuarios pueden interactuar con formularios dinámicos, seleccionar proveedores, visualizar calendarios y realizar seguimientos anotados, todo desde una misma plataforma.",
+            "primaryTech": 1,
+            "tech": [
+                {
+                    "name": "React Native",
+                    "desc": "Framework para desarrollar aplicaciones móviles multiplataforma, permitiendo crear interfaces nativas para iOS y Android usando JavaScript y React",
+                    "image": "react.webp"
+                },
+                {
+                    "name": "React Native Paper",
+                    "desc": "Biblioteca de componentes de interfaz de usuario que proporciona una implementación de Material Design para React Native, facilitando la creación de interfaces consistentes y profesionales",
+                    "image": "react-native-paper.webp"
+                },
+                {
+                    "name": "TypeScript",
+                    "desc": "TypeScript es un lenguaje de programación fuertemente tipado que se basa en JavaScript, lo que le brinda mejores herramientas a cualquier escala.",
+                    "image": "typescript.webp"
+                },
+                {
+                    "name": "HTML",
+                    "image": "html5.webp",
+                    "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+                },
+                {
+                    "name": "CSS",
+                    "image": "css3.webp",
+                    "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+                },
+                {
+                    "name": "React Navigation",
+                    "desc": "Sistema de navegación para React Native que permite crear flujos de navegación complejos y personalizados, incluyendo pestañas, pilas y drawers",
+                    "image": "react-navigation.webp"
+                },
+                {
+                    "name": "React Native Localize",
+                    "desc": "Biblioteca para manejar la internacionalización y localización en React Native, permitiendo cambiar el idioma de la aplicación dinámicamente y gestionar diferentes formatos regionales",
+                    "image": "react-native-localize.webp",
+                    "hidden": true
+                },
+                {
+                    "name": "React Native Calendar",
+                    "desc": "Componente especializado para mostrar calendarios en React Native, proporcionando funcionalidades avanzadas como selección de fechas, marcadores y eventos personalizados",
+                    "image": "react-native-calendar.webp"
+                },
+                {
+                    "name": "Async Storage",
+                    "desc": "Sistema de almacenamiento local para React Native que permite guardar datos persistentemente en el dispositivo, ideal para configuraciones y caché",
+                    "image": null
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "presupuestos_eurekacloud.webp",
+                    "desc": "Vista del listado de presupuestos creados."
+                },
+                {
+                    "img": "detalle-presupuesto-informacion_eurekacloud.webp",
+                    "desc": "Detalles de la información base de los presupuestos."
+                },
+                {
+                    "img": "crear-presupuesto_eurekacloud.webp",
+                    "desc": "Formulario de edición/creación de presupuestos."
+                },
+                {
+                    "img": "detalle-presupuesto-capítulos_eurekacloud.webp",
+                    "desc": "Capítulos de la partida."
+                },
+                {
+                    "img": "detalle-presupuesto-archivos-adjuntos_eurekacloud.webp",
+                    "desc": "Archivos adjuntos a la partida."
+                },
+                {
+                    "img": "detalle-presupuesto-seguimiento-_eurekacloud.webp",
+                    "desc": "Anotaciones o Actividades de seguimiento de la partida."
+                },
+                {
+                    "img": "detalle-presupuesto-seguimiento-select_eurekacloud.webp",
+                    "desc": "Anotaciones o Actividades de seguimiento de la partida con la opción de selección múltiple."
+                },
+                {
+                    "img": "detalle-presupuesto-seguimiento-desplegado_eurekacloud.webp",
+                    "desc": "Anotaciones o Actividades de seguimiento de la partida con los detalles desplegados."
+                },
+                {
+                    "img": "gestionar-actividad_eurekacloud.webp",
+                    "desc": "Formulario de creación/edición de actividad de seguimiento."
+                },
+                {
+                    "img": "detalle-presupuesto-detalle-sub-capitulo_eurekacloud.webp",
+                    "desc": "Listado del detalle de los capítulos."
+                },
+                {
+                    "img": "select-provider_eurekacloud.webp",
+                    "desc": "Vista de selección de proveedores."
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "title": "212global",
+            "platforms": [1, 2, 3],
+            "type": ["E-Commerce", "Responsive"],
+            "thumb": "212global_thumb.webp",
+            "description": "Proyecto de desarrollo y mejora para una tienda e-commerce que ofrece una amplia variedad de productos en múltiples categorías. El trabajo realizado abarcó una revisión integral del sitio, enfocándose en la reparación de estilos y la optimización de funcionalidades clave, mejorando la experiencia del usuario tanto en desktop como en dispositivos móviles. Uno de los principales logros fue el desarrollo desde cero de un plugin personalizado para integrar la pasarela de pago de Mercantil, permitiendo a los usuarios realizar transacciones seguras y fluidas directamente desde la tienda, adaptando los requerimientos específicos de esta plataforma bancaria. El resultado fue un sitio más funcional, visualmente coherente y con un sistema de pago robusto y totalmente integrado, preparado para escalar y adaptarse a las necesidades del negocio.",
+            "demo": null,
+            "repo": null,
+            "primaryTech": 6,
+            "tech": [
+                {
+                    "name": "WordPress",
+                    "desc": "WordPress es un sistema de gestión de contenidos lanzado el 27 de mayo de 2003, enfocado a la creación de cualquier tipo de página web.",
+                    "image": "wordpress.webp",
+                    "docs": "https://wordpress.com/es/"
+                },
+                {
+                    "name": "Elementor",
+                    "desc": "El plugin creador de sitios web de Elementor permite a los usuarios de WordPress crear y editar sitios web empleando la técnica de arrastrar y soltar, con un modo de respuesta integrado.",
+                    "image": "elementor-logo.webp",
+                    "docs": "https://elementor.com"
+                },
+                {
+                    "name": "Woocommerce",
+                    "desc": "Plugin de código abierto para WordPress que permite convertir un sitio web en una tienda en línea completamente funcional. Ofrece herramientas para gestionar productos, pagos, envíos e inventario, con una amplia gama de extensiones para personalizar y escalar la tienda según las necesidades del negocio.",
+                    "image": "woocommerce.webp",
+                    "docs": "https://woocommerce.com"
+                },
+                {
+                    "name": "jQuery",
+                    "image": "jquery.webp",
+                    "desc": "jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.",
+                    "docs": "https://jquery.com/"
+                },
+                {
+                    "name": "JavaScript",
+                    "image": "javascript.webp",
+                    "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+                },
+                {
+                    "name": "HTML",
+                    "image": "html5.webp",
+                    "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+                },
+                {
+                    "name": "CSS",
+                    "image": "css3.webp",
+                    "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "212global-index.webp",
+                    "desc": "Ventana de inicio de 212global."
+                },
+                {
+                    "img": "212global-productos.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "212global-detalles-producto.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "212global-cart.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "title": "On Time",
+            "platforms": [4],
+            "type": ["App Telefónica"],
+            "thumb": "on-time_thumb.webp",
+            "description": "Aplicación telefónica desarrollada en React Native Js, solución especializada para el registro y seguimiento de horas laborales, desarrollada utilizando React Native JS. Este sistema permite a los usuarios registrar automáticamente su tiempo de trabajo mediante un proceso de fichaje digital, reemplazando métodos tradicionales como hojas de papel o sistemas manuales.",
+            "demo": null,
+            "repo": null,
+            "primaryTech": 1,
+            "tech": [
+                {
+                    "name": "TypeScript",
+                    "desc": "TypeScript es un lenguaje de programación fuertemente tipado que se basa en JavaScript, lo que le brinda mejores herramientas a cualquier escala.",
+                    "image": "typescript.webp"
+                },
+                {
+                    "name": "HTML",
+                    "image": "html5.webp",
+                    "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+                },
+                {
+                    "name": "CSS",
+                    "image": "css3.webp",
+                    "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+                },
+                {
+                    "name": "React Native",
+                    "desc": "Framework para desarrollar aplicaciones móviles multiplataforma, permitiendo crear interfaces nativas para iOS y Android usando JavaScript y React",
+                    "image": "react.webp"
+                },
+                {
+                    "name": "React Native Paper",
+                    "desc": "Biblioteca de componentes de interfaz de usuario que proporciona una implementación de Material Design para React Native, facilitando la creación de interfaces consistentes y profesionales",
+                    "image": "react-native-paper.webp"
+                },
+                {
+                    "name": "React Navigation",
+                    "desc": "Sistema de navegación para React Native que permite crear flujos de navegación complejos y personalizados, incluyendo pestañas, pilas y drawers",
+                    "image": "react-navigation.webp"
+                },
+                {
+                    "name": "React Native Localize",
+                    "desc": "Biblioteca para manejar la internacionalización y localización en React Native, permitiendo cambiar el idioma de la aplicación dinámicamente y gestionar diferentes formatos regionales",
+                    "image": "react-native-localize.webp",
+                    "hidden": true
+                },
+                {
+                    "name": "React Native Calendar",
+                    "desc": "Componente especializado para mostrar calendarios en React Native, proporcionando funcionalidades avanzadas como selección de fechas, marcadores y eventos personalizados",
+                    "image": "react-native-calendar.webp"
+                },
+                {
+                    "name": "Async Storage",
+                    "desc": "Sistema de almacenamiento local para React Native que permite guardar datos persistentemente en el dispositivo, ideal para configuraciones y caché",
+                    "image": null
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "on-time_login.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "on-time_selecciónd-de-idioma.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "on-time_calendario-selección-de-fecha.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "on-time_calendario.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "on-time_dirección-de-fichaje.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "on-time_nueva-Imputación-selección-de-hora.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "on-time_nueva-imputación.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                },
+                {
+                    "img": "on-time_tu-jornada-actual.webp",
+                    "desc": "Ventana de inicio de sesión de la aplicación telefónica."
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "OVNISOLUTIONS",
+            "platforms": [1, 2, 3],
+            "type": ["One Page", "Landing Page", "Responsive"],
+            "thumb": "ovnisolution_thumb.webp",
+            "description": "Página web desarrollada para OVNISOLUTIONS para exponer sus servicios, y captar clientes dando a conocer proyectos y alcance.",
+            "demo": "https://rojo95.github.io/ovnisolutions-web/",
+            "repo": "https://github.com/rojo95/ovnisolutions-web/",
+            "primaryTech": 3,
+            "tech": [
+                {
+                    "name": "Algular",
+                    "desc": "Angular es un framework para aplicaciones web desarrollado en TypeScript.",
+                    "image": "angular.webp",
+                    "docs": "https://angular.io"
+                },
+                {
+                    "name": "TypeScript",
+                    "desc": "TypeScript es un lenguaje de programación fuertemente tipado que se basa en JavaScript, lo que le brinda mejores herramientas a cualquier escala.",
+                    "image": "typescript.webp"
+                },
+                {
+                    "name": "HTML",
+                    "image": "html5.webp",
+                    "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+                },
+                {
+                    "name": "SCSS",
+                    "image": "scss.webp",
+                    "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+                },
+                {
+                    "name": "ngx-parallax-scroll",
+                    "desc": "Este es un complemento angular simple, que nos permite implementar el efecto de paralaje para algún elemento en la página."
+                },
+                {
+                    "name": "ng-bootstrap",
+                    "docs": "https://ng-bootstrap.github.io/#/home",
+                    "image": "ng-bootstrap.webp",
+                    "desc": "Framework de diseño web Bootstrap adaptado a Angular."
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "ovnisolutions_banner.webp",
+                    "desc": "Secciones del menú, slider y equipo que conforma \"OVNISOLUTIONS\"."
+                },
+                {
+                    "img": "ovnisolutions-services-portfolio.webp",
+                    "desc": "Servicios y algunas demostraciones de los servicios que ofrece \"OVNISOLUTIONS\"."
+                },
+                {
+                    "img": "ovnisolutions-footer.webp",
+                    "desc": "Sección de \"Contáctanos\" y pié de página de la página web."
+                },
+                {
+                    "img": "ovnisolutions_full_page.webp",
+                    "desc": "Visualización completa de la página web de \"OVNISOLUTIONS\", la cual esta pensada para dar a conocer una pequeña empresa y ofrecer y presentar los servicios."
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Portafolio",
+            "platforms": [1, 2, 3],
+            "type": ["Portfolio", "Responsive"],
+            "thumb": "portafolio_thumb.webp",
+            "description": "Este proyecto es un portafolio web responsive desarrollado con Vue.js, diseñado para presentar de forma clara y profesional la información personal, experiencia laboral, conocimientos técnicos y proyectos realizados del autor.",
+            "demo": "https://rojo95.github.io/portfolio-1_legacy/",
+            "repo": "https://github.com/rojo95/portfolio-1_legacy/",
+            "primaryTech": 5,
+            "tech": [
+                {
+                    "name": "Vue",
+                    "desc": "Un marco accesible, performante y versátil para construir interfaces de usuario web.",
+                    "image": "vue.webp",
+                    "docs": "https://vuejs.org"
+                },
+                {
+                    "name": "HTML",
+                    "image": "html5.webp",
+                    "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+                },
+                {
+                    "name": "CSS",
+                    "image": "css3.webp",
+                    "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "portafolio-v1_home.webp",
+                    "desc": "Página de inicio con información personal, estudios y conocimiento."
+                },
+                {
+                    "img": "portafolio-v1_projects.webp",
+                    "desc": "Proyectos realizados."
+                },
+                {
+                    "img": "portafolio-v1_experience.webp",
+                    "desc": "Experiencia laboral."
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "title": "Barbería El Imperial",
+            "platforms": [1, 2, 3],
+            "type": ["One Page", "Landing Page", "Responsive"],
+            "thumb": "barberia-el-imperial_thumb.webp",
+            "description": "Página web de tipo One Page, desarrollado para barbería \"El imperial\", dando a conocer servicios y ubicación.",
+            "demo": "https://rojo95.github.io/barberia-el-imperial-static/",
+            "repo": "https://github.com/rojo95/barberia-el-imperial-static/",
+            "primaryTech": 6,
+            "tech": [
+                {
+                    "name": "WordPress",
+                    "desc": "WordPress es un sistema de gestión de contenidos lanzado el 27 de mayo de 2003, enfocado a la creación de cualquier tipo de página web.",
+                    "image": "wordpress.webp",
+                    "docs": "https://wordpress.com/es/"
+                },
+                {
+                    "name": "Elementor",
+                    "desc": "El plugin creador de sitios web de Elementor permite a los usuarios de WordPress crear y editar sitios web empleando la técnica de arrastrar y soltar, con un modo de respuesta integrado.",
+                    "image": "elementor-logo.webp",
+                    "docs": "https://elementor.com"
+                },
+                {
+                    "name": "LoftLoader",
+                    "desc": "Plugin para realizar ventana básica de precarga de página web",
+                    "image": "loftloader.webp",
+                    "docs": "https://es.wordpress.org/plugins/loftloader/"
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "barberia-el-imperial.webp",
+                    "desc": "Página web completa."
+                },
+                {
+                    "img": "barberia-el-imperial_1.webp",
+                    "desc": "Ventana de carga de la página web."
+                },
+                {
+                    "img": "barberia-el-imperial_2.webp",
+                    "desc": "Sección de slider de la página web."
+                },
+                {
+                    "img": "barberia-el-imperial_3.webp",
+                    "desc": "Sección de equipo de la página web."
+                },
+                {
+                    "img": "barberia-el-imperial_4.webp",
+                    "desc": "Sección de servicios de la página web."
+                },
+                {
+                    "img": "barberia-el-imperial_5.webp",
+                    "desc": "Sección de premios y dirección de la página web."
+                },
+                {
+                    "img": "barberia-el-imperial_6.webp",
+                    "desc": "Sección de opiniones y pie de página de la página web."
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Dyhana",
+            "platforms": [1, 2, 3],
+            "type": ["Landing Page", "Responsive"],
+            "thumb": "dhyana_thumb.webp",
+            "description": "Página web de tipo Landing Page de academia de yoga \"Dhyana\" destinada a ofrecer servicios, captar subscriptores y muevos clientes.",
+            "demo": "https://rojo95.github.io/dhyana/",
+            "repo": "https://github.com/rojo95/dhyana/",
+            "primaryTech": 6,
+            "tech": [
+                {
+                    "name": "WordPress",
+                    "desc": "WordPress es un sistema de gestión de contenidos lanzado el 27 de mayo de 2003, enfocado a la creación de cualquier tipo de página web.",
+                    "image": "wordpress.webp",
+                    "docs": "https://wordpress.com/es/"
+                },
+                {
+                    "name": "Elementor",
+                    "desc": "El plugin creador de sitios web de Elementor permite a los usuarios de WordPress crear y editar sitios web empleando la técnica de arrastrar y soltar, con un modo de respuesta integrado.",
+                    "image": "elementor-logo.webp",
+                    "docs": "https://elementor.com"
+                },
+                {
+                    "name": "Event Calendar",
+                    "desc": "Cree y administre fácilmente un calendario de eventos en su sitio de WordPress con el complemento gratuito The Events Calendar. Ya sea que sus eventos sean presenciales o virtuales, este complemento de calendario de WordPress cuenta con funciones profesionales respaldadas por nuestro equipo de desarrolladores y diseñadores de clase mundial.",
+                    "image": "event-calendar-wordpress.webp"
+                },
+                {
+                    "name": "Events Widgets For Elementor And The Events Calendar",
+                    "desc": "Con este widget, puede mostrar eventos fácilmente en la página de inicio o en cualquier otra página de Elementor. Proporciona tres tipos de Diseños (Lista/Lista mínima/Calendario).",
+                    "image": "calendar-elementor.webp"
+                },
+                {
+                    "name": "LoftLoader",
+                    "desc": "Plugin para realizar ventana básica de precarga de página web",
+                    "image": "loftloader.webp",
+                    "docs": "https://es.wordpress.org/plugins/loftloader/"
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "dhyana.webp",
+                    "desc": "Ventana de Inicio de la página web."
+                },
+                {
+                    "img": "dhyana_2.webp",
+                    "desc": "Ventana de \"Nosotros\" de la página web donde explica más a profundidad de qué trata la empresa."
+                },
+                {
+                    "img": "dhyana_3.webp",
+                    "desc": "Ventana de \"Programas\" de la página web, donde detallan sus programas y cursos."
+                },
+                {
+                    "img": "dhyana_4.webp",
+                    "desc": "Ventana de \"Eventos\" de la página web, donde se muestra los eventos que sucederán así como un historico de eventos."
+                },
+                {
+                    "img": "dhyana_5.webp",
+                    "desc": "Ventana de \"Academia\" de la página web, donde se da información de la misma y se especifica cómo llegar."
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "App Geolocalización",
+            "platforms": [1, 2, 3, 4],
+            "type": ["App", "Geolocalización"],
+            "thumb": "ionic_thumb.webp",
+            "description": "Aplicación telefónica desarrollada en Ionic con la capacidad de posicionar geográficamente al usuario, marcar ubicaciones y generar rutas para llegar al objetivo.",
+            "demo": "https://rojo95.github.io/ionic-app/",
+            "repo": "https://github.com/rojo95/ionic-app/",
+            "primaryTech": 4,
+            "tech": [
+                {
+                    "name": "Ionic",
+                    "image": "ionic.webp",
+                    "desc": "Ionic es un framework gratuito y open source para desarrollar aplicaciones híbridas multiplataforma que utiliza HTML5, CSS (generado por SASS) y Cordova como base."
+                },
+                {
+                    "name": "Angular",
+                    "desc": "Angular es un framework para aplicaciones web desarrollado en TypeScript.",
+                    "image": "angular.webp",
+                    "docs": "https://angular.io"
+                },
+                {
+                    "name": "Apache Cordova",
+                    "desc": "Es un popular entorno de desarrollo de aplicaciones móviles, permite a los programadores de software, construir aplicaciones para dispositivos móviles utilizando CSS3, HTML5, y JavaScript en vez de utilizar APIs específicas de cada plataforma como Android, iOS, o Windows Phone."
+                },
+                {
+                    "name": "Leaflet",
+                    "image": "leaflet-logo.webp",
+                    "desc": "Leaflet es una librería JavaScript open source ampliamente utilizada para la publicación de mapas en la web.",
+                    "docs": "https://leafletjs.com/"
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "ionic-app.webp",
+                    "desc": "Ventana de ruta de punto \"A\" a punto \"B\"."
+                },
+                {
+                    "img": "ionic-app_2.webp",
+                    "desc": "Ventana de punto de mapa."
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Pulperi-App",
+            "platforms": [1, 2, 3],
+            "type": [
+                "Sistema de gestión de Información",
+                "Responsive",
+                "Inventario",
+                "Ventas",
+                "Estadisticas"
+            ],
+            "thumb": "pulperi-app_thumb.webp",
+            "description": "Sistema de información de gestión y control de ventas, personal e inventario para pequeños o medianos establecimiento de venta.",
+            "primaryTech": 2,
+            "tech": [
+                {
+                    "name": "PHP",
+                    "image": "php.webp",
+                    "desc": "PHP (acrónimo recursivo de PHP: Hypertext Preprocessor) es un lenguaje de código abierto muy popular especialmente adecuado para el desarrollo web y que puede ser incrustado en HTML.",
+                    "docs": "https://www.php.net/manual/es/intro-whatis.php"
+                },
+                {
+                    "name": "JavaScript",
+                    "image": "javascript.webp",
+                    "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+                },
+                {
+                    "name": "Laravel 9",
+                    "image": "laravel.webp",
+                    "desc": "Laravel es un framework PHP gratis y de código abierto que brinda un conjunto de herramientas y recursos para crear aplicaciones modernas. Posee un ecosistema integral que combina funciones integradas y una variedad de paquetes y extensiones compatibles.",
+                    "docs": "https://laravel.com/"
+                },
+                {
+                    "name": "jQuery",
+                    "image": "jquery.webp",
+                    "desc": "jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.",
+                    "docs": "https://jquery.com/"
+                },
+                {
+                    "name": "ChartJs",
+                    "image": "chartjs.webp",
+                    "desc": "Gráficos de JavaScript basados ​​en HTML5 simples, limpios y atractivos. Chart.js es una manera fácil de incluir gráficos animados e interactivos en su sitio web de forma gratuita.",
+                    "docs": "https://www.chartjs.org/"
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "pulperi-app.webp",
+                    "desc": "Ventana de inicio de sesión."
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Carnetización con React",
+            "platforms": [1, 2, 3],
+            "type": [
+                "Sistema de gestión de Información",
+                "Carnetización",
+                "Responsive"
+            ],
+            "thumb": "react-carnets_thumb.webp",
+            "description": "Herramienta para la creación de carnets totalmente editables y customizables, el cual permite arrastrar y redimensionar fácilmente los diferentes elementos del carné, lo que hace que la personalización sea más intuitiva y cómoda.",
+            "demo": "https://rojo95.github.io/carnet-react/",
+            "repo": "https://github.com/rojo95/carnet-react/",
+            "primaryTech": 1,
+            "tech": [
+                {
+                    "name": "React JS",
+                    "image": "react.webp",
+                    "desc": "React es una biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.",
+                    "docs": "https://es.react.dev/"
+                },
+                {
+                    "name": "JavaScript",
+                    "image": "javascript.webp",
+                    "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+                },
+                {
+                    "name": "react-rnd",
+                    "image": "react-rnd.webp",
+                    "desc": "React RND es una librearía de JavaScript creada para React JS, la cual permite arrastrar y redimensionar elementos en tiempo real dentro del DOM."
+                },
+                {
+                    "name": "react-qr-code",
+                    "image": "",
+                    "desc": "Librería de JavaScript creada para React JS para hacer códigos QR de manera sencilla."
+                },
+                {
+                    "name": "react-watermark",
+                    "image": "",
+                    "desc": "Librería de JavaScript creada para React JS para colocar marca de agua en un area especificada."
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "carnets-react.webp",
+                    "desc": "Ventana de creación de carnets."
+                },
+                {
+                    "img": "carnets-react_movil.webp",
+                    "desc": "Ventana de creación de carnets en dispositivos celulares."
+                },
+                {
+                    "img": "carnets-react_tablet.webp",
+                    "desc": "Ventana de creación de carnets en tablets."
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "title": "React Map",
+            "platforms": [1, 2, 3],
+            "type": ["One Page", "Geolocalización", "Responsive"],
+            "thumb": "react-map_thumb.webp",
+            "description": "Página web de tipo One Page, orientada al posicionamiento global, la misma posee propiedades como cambiar el tipo de mapa, localizar la posición actual y trazar rutas desde el punto A al punto B.",
+            "demo": "https://rojo95.github.io/react-map/",
+            "repo": "https://github.com/rojo95/react-map/",
+            "primaryTech": 1,
+            "tech": [
+                {
+                    "name": "React JS",
+                    "image": "react.webp",
+                    "desc": "React es una biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.",
+                    "docs": "https://es.react.dev/"
+                },
+                {
+                    "name": "Leaflet",
+                    "image": "leaflet-logo.webp",
+                    "desc": "Leaflet es una librería JavaScript open source ampliamente utilizada para la publicación de mapas en la web.",
+                    "docs": "https://leafletjs.com/"
+                },
+                {
+                    "name": "react-leaflet",
+                    "image": "react-leaflet.webp",
+                    "desc": "Leaflet es una librería JavaScript open source ampliamente utilizada para la publicación de mapas en la web.",
+                    "docs": "https://react-leaflet.js.org/"
+                },
+                {
+                    "name": "Material Ui",
+                    "image": "material-ui-logo.webp",
+                    "desc": "Material UI es una biblioteca de componentes de interfaz de usuario de React.js, basada en Material Design de Google, que proporciona pautas y lineamientos para crear diseños profesionales para aplicaciones web en poco tiempo.",
+                    "docs": "https://mui.com/"
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "react-map_1.webp",
+                    "desc": "Página web completa."
+                },
+                {
+                    "img": "react-map_2.webp",
+                    "desc": "Menues laterales de la página."
+                },
+                {
+                    "img": "react-map_3.webp",
+                    "desc": "Variación del mapa."
+                },
+                {
+                    "img": "react-map_4.webp",
+                    "desc": "Selección de ruta en el mapa."
+                },
+                {
+                    "img": "react-map_5.webp",
+                    "desc": "Ruta trazada en el mapa."
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "title": "Liliana Vela",
+            "platforms": [1, 2, 3],
+            "type": ["E-Commerce", "Landing Page", "Responsive"],
+            "thumb": "lili-vela_thumb.webp",
+            "description": "Página web de ayuda personal utilizada para vender audio libros, hacer conferencias, talleres y un blog en el cual su administradora y dueña da consejos sobre diferentes aspectos de la vida. La página cuenta también con un diseño totalmente responsivo, en caso de que sea accedida desde algún dispositivo inteligente.",
+            "primaryTech": 6,
+            "tech": [
+                {
+                    "name": "WordPress",
+                    "desc": "WordPress es un sistema de gestión de contenidos lanzado el 27 de mayo de 2003, enfocado a la creación de cualquier tipo de página web.",
+                    "image": "wordpress.webp",
+                    "docs": "https://wordpress.com/es/"
+                },
+                {
+                    "name": "Elementor",
+                    "desc": "El plugin creador de sitios web de Elementor permite a los usuarios de WordPress crear y editar sitios web empleando la técnica de arrastrar y soltar, con un modo de respuesta integrado.",
+                    "image": "elementor-logo.webp",
+                    "docs": "https://elementor.com"
+                },
+                {
+                    "name": "Woocommerce",
+                    "desc": "Plugin de código abierto para WordPress que permite convertir un sitio web en una tienda en línea completamente funcional. Ofrece herramientas para gestionar productos, pagos, envíos e inventario, con una amplia gama de extensiones para personalizar y escalar la tienda según las necesidades del negocio.",
+                    "image": "woocommerce.webp",
+                    "docs": "https://woocommerce.com"
+                },
+                {
+                    "name": "LoftLoader",
+                    "desc": "Plugin para realizar ventana básica de precarga de página web",
+                    "image": "loftloader.webp",
+                    "docs": "https://es.wordpress.org/plugins/loftloader/"
+                },
+                {
+                    "name": "jQuery",
+                    "image": "jquery.webp",
+                    "desc": "jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.",
+                    "docs": "https://jquery.com/"
+                },
+                {
+                    "name": "JavaScript",
+                    "image": "javascript.webp",
+                    "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+                },
+                {
+                    "name": "HTML",
+                    "image": "html5.webp",
+                    "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+                },
+                {
+                    "name": "CSS",
+                    "image": "css3.webp",
+                    "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "lili-vela-1.webp",
+                    "desc": "Menues laterales de la página."
+                },
+                {
+                    "img": "lili-vela-2.webp",
+                    "desc": "Variación del mapa."
+                },
+                {
+                    "img": "lili-vela-3.webp",
+                    "desc": "Selección de ruta en el mapa."
+                },
+                {
+                    "img": "lili-vela.webp",
+                    "desc": "Página web completa."
+                },
+                {
+                    "img": "lili-vela-movil-1.webp",
+                    "desc": "Ruta trazada en el mapa."
+                },
+                {
+                    "img": "lili-vela-movil-2.webp",
+                    "desc": "Ruta trazada en el mapa."
+                },
+                {
+                    "img": "lili-vela-movil-3.webp",
+                    "desc": "Ruta trazada en el mapa."
+                },
+                {
+                    "img": "lili-vela-movil.webp",
+                    "desc": "Ruta trazada en el mapa."
+                }
+            ]
+        }
+    ]
+}

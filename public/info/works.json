@@ -1,0 +1,473 @@
+[
+    {
+        "name": "Taktics Ingeniería de Negocio S.L.",
+        "shortName": "Taktics",
+        "image": "taktics-background.webp",
+        "logo": "taktics-logo.webp",
+        "idCard": "carnet-7.webp",
+        "startDate": "2024-05-07",
+        "endDate": null,
+        "position": "devFullStack",
+        "roles": [
+            "Programador Web Full Stack",
+            "Desarrollador Móvil React Native",
+            "Diseñador Web"
+        ],
+        "rolesDescription": "Programador Web Full Stack, desarrollador de aplicaciones móviles con React Native y diseñador web, participando en la creación e implementación de soluciones digitales adaptadas a las necesidades del cliente.",
+        "skills": [
+            {
+                "name": "React Native",
+                "desc": "Framework para desarrollar aplicaciones móviles multiplataforma, permitiendo crear interfaces nativas para iOS y Android usando JavaScript y React",
+                "image": "react.webp"
+            },
+            {
+                "name": "Node.js",
+                "image": "node.webp",
+                "desc": "Node.js es un entorno de ejecución para JavaScript que permite ejecutar código JavaScript en el servidor, facilitando la creación de aplicaciones web escalables y rápidas.",
+                "docs": "https://nodejs.org/es/docs/"
+            },
+            {
+                "name": "Figma",
+                "image": "figma.webp",
+                "desc": "Figma es una herramienta de diseño basada en navegador que permite crear, prototipar y desarrollar productos digitales de manera colaborativa. Ofrece características como diseño en tiempo real, prototipado interactivo y sistemas de diseño completos para mantener la consistencia en los proyectos."
+            },
+            {
+                "name": "CSS",
+                "image": "css3.webp",
+                "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+            },
+            {
+                "name": "JavaScript",
+                "image": "javascript.webp",
+                "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+            }
+        ],
+        "frameworks": ["React Native", "Angular Js"],
+        "description": "Especializados en la digitalización del sector de instaladores y constructores, brindando soluciones tecnológicas que optimizan los procesos empresariales."
+    },
+    {
+        "name": "Grupo AKR",
+        "shortName": "Grupo AKR",
+        "image": "akr-background.webp",
+        "logo": "akr-logo.webp",
+        "idCard": "carnet-6.webp",
+        "startDate": "2023-05-02",
+        "endDate": "2024-05-07",
+        "position": "webDevFullStack",
+        "roles": ["Programador Web Full Stack"],
+        "rolesDescription": "Encargado del desarrollo y mantenimiento de aplicaciones web, integración de servicios externos y optimización de sistemas de fullfilment adaptados al modelo de negocio de dropshipping.",
+        "skills": [
+            {
+                "name": "HTML",
+                "image": "html5.webp",
+                "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+            },
+            {
+                "name": "CSS",
+                "image": "css3.webp",
+                "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+            },
+            {
+                "name": "JavaScript",
+                "image": "javascript.webp",
+                "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+            },
+            {
+                "name": "Node.js",
+                "image": "node.webp",
+                "desc": "Node.js es un entorno de ejecución para JavaScript que permite ejecutar código JavaScript en el servidor, facilitando la creación de aplicaciones web escalables y rápidas.",
+                "docs": "https://nodejs.org/es/docs/"
+            },
+            {
+                "name": "ECMAScript 6",
+                "image": "ecmascript.webp",
+                "desc": "ECMAScript 6, también conocido como ES6 o ECMAScript 2015, es una versión del estándar de JavaScript que introdujo importantes mejoras y nuevas características, como clases, módulos, y funciones de flecha."
+            },
+            {
+                "name": "MongoDB",
+                "image": "mongo.webp",
+                "desc": "MongoDB es una base de datos NoSQL orientada a documentos que utiliza un formato de datos similar a JSON, lo que permite almacenar y consultar datos de manera flexible y escalable.",
+                "docs": "https://docs.mongodb.com/manual/"
+            },
+            {
+                "name": "WordPress",
+                "desc": "WordPress es un sistema de gestión de contenidos lanzado el 27 de mayo de 2003, enfocado a la creación de cualquier tipo de página web.",
+                "image": "wordpress.webp",
+                "docs": "https://wordpress.com/es/"
+            },
+            {
+                "name": "jQuery",
+                "image": "jquery.webp",
+                "desc": "jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.",
+                "docs": "https://jquery.com/"
+            }
+        ],
+        "frameworks": ["React Js", "Bootstrap 4", "ExpressJS"],
+        "description": "Mejorando la calidad de vida de los clientes mediante soluciones innovadoras en dropshipping y fulfillment, con un enfoque en eficiencia operativa.",
+        "proyects": [
+            {
+                "name": "Creación e Integración de Pasarela de Pago de Mercantil Venezuela",
+                "rol": "Desarrollador Full Stack",
+                "desc": "Se creó un plugin de Wordpress que conecta con una API de Node JS con Typescript, el cual se conecta con la plataforma de Mercantil Venezuela para pagar automáticamente las ordenes realizadas por el mismo.",
+                "tech": "React Js, Node Js (con TypeScript), Woocommerce.",
+                "goals": "Integrar e Implementar una Pasarela de pago en Woocommerce, procesando el pago con Node Js (Typescitp) e integrando con Mercantil Venezuela."
+            },
+            {
+                "name": "Mantenimiento y actualización del Sistema \"KAPI\" de Fullfilment",
+                "rol": "Desarrollador Full Stack",
+                "desc": "Mantenimiento el sistema \"KAPI\", una solución de Fullfilment que facilita la publicación y actualización de productos en Woocommerce y Mercado Libre, la descarga de tarifas, productos, categorías de Odoo, y la recepción de notificaciones desde Shopify a través de webhooks nativos.",
+                "tech": "React Js, Node Js (con TypeScript), Woocommerce, Mercado Libre, Odoo, Shopify, Bootstrap, Styled Components, y gestión de sesiones a través de estados contextuales.",
+                "goals": "Mejoré la eficiencia del sistema al implementar nuevas características y optimizar el código existente, lo que resultó en un aumento significativo en la eficiencia operativa de la publicación y actualización de productos."
+            }
+        ]
+    },
+    {
+        "name": "Servicio Desconcentrado Nacional de Normalización Calidad Metrología y Reglamentaciones Técnicas",
+        "shortName": "SENCAMER",
+        "image": "sencamer-background.webp",
+        "logo": "sencamer-logo.webp",
+        "idCard": "carnet-5.webp",
+        "startDate": "2019-11-19",
+        "endDate": "2022-07-01",
+        "position": "divisionSysChief",
+        "roles": [
+            "Jefe de División",
+            "Liderazgo de equipo multidisciplinario",
+            "Programador Web Full Stack",
+            "Diseño y modelado de bases de datos",
+            "Gestión de proyectos"
+        ],
+        "rolesDescription": "Liderazgo de equipo técnico y desarrollo de sistemas internos, incluyendo programación web full stack, modelado de bases de datos y coordinación de proyectos estratégicos para el fortalecimiento del Sistema Venezolano para la Calidad.",
+        "skills": [
+            {
+                "name": "HTML",
+                "image": "html5.webp",
+                "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+            },
+            {
+                "name": "CSS",
+                "image": "css3.webp",
+                "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+            },
+            {
+                "name": "PHP 5",
+                "image": "php.webp",
+                "desc": "PHP 5 es una versión del lenguaje de programación PHP que introdujo características como la programación orientada a objetos, mejoras en el manejo de excepciones y soporte para el modelo de objetos de la extensión de base de datos.",
+                "docs": "https://www.php.net/"
+            },
+            {
+                "name": "PHP 7",
+                "image": "php.webp",
+                "desc": "PHP 7 es una versión del lenguaje PHP que ofrece mejoras significativas en el rendimiento, nuevas características como el operador de nave espacial y el tipo de retorno escalar, así como un mejor manejo de errores.",
+                "docs": "https://www.php.net/"
+            },
+            {
+                "name": "PHP 8",
+                "image": "php.webp",
+                "desc": "PHP 8 es la última versión del lenguaje PHP que introduce características como el compilador Just In Time (JIT), atributos, y mejoras en la sintaxis, lo que permite un desarrollo más eficiente y rápido.",
+                "docs": "https://www.php.net/"
+            },
+            {
+                "name": "YAML",
+                "image": "yaml.webp",
+                "desc": "YAML (YAML Ain't Markup Language) es un formato de serialización de datos legible por humanos, utilizado comúnmente para la configuración de aplicaciones y el intercambio de datos entre lenguajes de programación.",
+                "docs": "https://yaml.org/spec/1.2/spec.html"
+            },
+            {
+                "name": "JavaScript",
+                "image": "javascript.webp",
+                "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+            },
+            {
+                "name": "PostgreSQL",
+                "image": "postgresql.webp",
+                "desc": "PostgreSQL es un sistema de gestión de bases de datos relacional y objeto, conocido por su robustez, extensibilidad y cumplimiento de estándares SQL. Es ideal para aplicaciones que requieren un alto nivel de integridad de datos y soporte para transacciones complejas.",
+                "docs": "https://www.postgresql.org/docs/"
+            }
+        ],
+        "frameworks": [
+            "Laravel 7",
+            "Laravel 8",
+            "Laravel 9",
+            "Bootstrap 3",
+            "Bootstrap 4",
+            "Bootstrap 5"
+        ],
+        "description": "Gestión del Sistema Venezolano para la Calidad, promoviendo políticas y programas para asegurar el acceso a bienes y servicios de calidad."
+    },
+    {
+        "name": "Fondo de Desarrollo para la Normalización, Calidad, Certificación y Metrología",
+        "shortName": "FODENORCA",
+        "image": "fodenorca-background.webp",
+        "logo": "fodenorca-logo.webp",
+        "idCard": "carnet-4.webp",
+        "startDate": "2019-11-19",
+        "endDate": "2021-08-03",
+        "position": "deputySysDirector",
+        "roles": [
+            "Jefe de División",
+            "Liderazgo de equipo multidisciplinario",
+            "Programador Web Full Stack",
+            "Diseño y modelado de bases de datos",
+            "Gestión de proyectos"
+        ],
+        "rolesDescription": "Encargado de liderar el equipo de desarrollo de sistemas, programar aplicaciones web full stack, modelar bases de datos y gestionar proyectos estratégicos para la normalización y certificación de calidad en el país.",
+        "skills": [
+            {
+                "name": "HTML",
+                "image": "html5.webp",
+                "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+            },
+            {
+                "name": "CSS",
+                "image": "css3.webp",
+                "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+            },
+            {
+                "name": "PHP 5",
+                "image": "php.webp",
+                "desc": "PHP 5 es una versión del lenguaje de programación PHP que introdujo características como la programación orientada a objetos, mejoras en el manejo de excepciones y soporte para el modelo de objetos de la extensión de base de datos.",
+                "docs": "https://www.php.net/"
+            },
+            {
+                "name": "PHP 7",
+                "image": "php.webp",
+                "desc": "PHP 7 es una versión del lenguaje PHP que ofrece mejoras significativas en el rendimiento, nuevas características como el operador de nave espacial y el tipo de retorno escalar, así como un mejor manejo de errores.",
+                "docs": "https://www.php.net/"
+            },
+            {
+                "name": "PHP 8",
+                "image": "php.webp",
+                "desc": "PHP 8 es la última versión del lenguaje PHP que introduce características como el compilador Just In Time (JIT), atributos, y mejoras en la sintaxis, lo que permite un desarrollo más eficiente y rápido.",
+                "docs": "https://www.php.net/"
+            },
+            {
+                "name": "YAML",
+                "image": "yaml.webp",
+                "desc": "YAML (YAML Ain't Markup Language) es un formato de serialización de datos legible por humanos, utilizado comúnmente para la configuración de aplicaciones y el intercambio de datos entre lenguajes de programación.",
+                "docs": "https://yaml.org/spec/1.2/spec.html"
+            },
+            {
+                "name": "JavaScript",
+                "image": "javascript.webp",
+                "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+            },
+            {
+                "name": "PostgreSQL",
+                "image": "postgresql.webp",
+                "desc": "PostgreSQL es un sistema de gestión de bases de datos relacional y objeto, conocido por su robustez, extensibilidad y cumplimiento de estándares SQL. Es ideal para aplicaciones que requieren un alto nivel de integridad de datos y soporte para transacciones complejas.",
+                "docs": "https://www.postgresql.org/docs/"
+            }
+        ],
+        "frameworks": [
+            "Laravel 7",
+            "Laravel 8",
+            "Laravel 9",
+            "Bootstrap 3",
+            "Bootstrap 4",
+            "Bootstrap 5"
+        ],
+        "description": "Promoción de actividades de normalización y certificación, contribuyendo al desarrollo y competitividad de las organizaciones venezolanas."
+    },
+    {
+        "name": "INTACTILE C.A.",
+        "shortName": "INTACTILE",
+        "image": "intactile-background.webp",
+        "logo": "intactile-logo.webp",
+        "idCard": "carnet-3.webp",
+        "startDate": "2018-12-01",
+        "endDate": "2019-07-02",
+        "position": "webDevFullStack",
+        "roles": ["Programador Web Full Stack"],
+        "rolesDescription": "Encargado del desarrollo de aplicaciones web utilizando tecnologías modernas como React y Node.js, creación de interfaces intuitivas y construcción de APIs eficientes para proyectos internos de la empresa.",
+        "skills": [
+            {
+                "name": "HTML",
+                "image": "html5.webp",
+                "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+            },
+            {
+                "name": "CSS",
+                "image": "css3.webp",
+                "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+            },
+            {
+                "name": "JavaScript",
+                "image": "javascript.webp",
+                "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+            },
+            {
+                "name": "Node.js",
+                "image": "node.webp",
+                "desc": "Node.js es un entorno de ejecución para JavaScript que permite ejecutar código JavaScript en el servidor, facilitando la creación de aplicaciones web escalables y rápidas.",
+                "docs": "https://nodejs.org/es/docs/"
+            },
+            {
+                "name": "ECMAScript 6",
+                "image": "ecmascript.webp",
+                "desc": "ECMAScript 6, también conocido como ES6 o ECMAScript 2015, es una versión del estándar de JavaScript que introdujo importantes mejoras y nuevas características, como clases, módulos, y funciones de flecha."
+            },
+            {
+                "name": "Express.js",
+                "image": "expressjs.webp",
+                "desc": "Express.js es un framework web para Node.js que facilita la creación de aplicaciones y APIs web. Proporciona un conjunto robusto de características para el desarrollo de aplicaciones web y móviles, permitiendo una gestión sencilla de rutas, middleware y solicitudes HTTP.",
+                "docs": "https://expressjs.com/"
+            },
+            {
+                "name": "PostgreSQL",
+                "image": "postgresql.webp",
+                "desc": "PostgreSQL es un sistema de gestión de bases de datos relacional y objeto, conocido por su robustez, extensibilidad y cumplimiento de estándares SQL. Es ideal para aplicaciones que requieren un alto nivel de integridad de datos y soporte para transacciones complejas.",
+                "docs": "https://www.postgresql.org/docs/"
+            }
+        ],
+        "frameworks": ["React Js", "React Native Js"],
+        "description": "Desarrollo y mantenimiento de soluciones digitales utilizando tecnologías avanzadas para ofrecer plataformas web modernas y eficientes."
+    },
+    {
+        "name": "NINWEB",
+        "shortName": "NINWEB",
+        "image": "ninweb-background.webp",
+        "logo": "ninweb-logo.webp",
+        "idCard": "carnet-2.webp",
+        "startDate": "2018-07-02",
+        "endDate": "2018-11-30",
+        "position": "webDevFullStack",
+        "roles": ["Programador Web Full Stack"],
+        "rolesDescription": "Desarrollo de sitios web y aplicaciones a medida, implementación de soluciones en WordPress y Laravel, y mantenimiento de plataformas digitales para clientes corporativos.",
+        "skills": [
+            {
+                "name": "Laravel",
+                "image": "laravel.webp",
+                "desc": "Laravel es un framework PHP gratis y de código abierto que brinda un conjunto de herramientas y recursos para crear aplicaciones modernas. Posee un ecosistema integral que combina funciones integradas y una variedad de paquetes y extensiones compatibles.",
+                "docs": "https://laravel.com/"
+            },
+            {
+                "name": "WordPress",
+                "desc": "WordPress es un sistema de gestión de contenidos lanzado el 27 de mayo de 2003, enfocado a la creación de cualquier tipo de página web.",
+                "image": "wordpress.webp",
+                "docs": "https://wordpress.com/es/"
+            },
+            {
+                "name": "Elementor",
+                "desc": "El plugin creador de sitios web de Elementor permite a los usuarios de WordPress crear y editar sitios web empleando la técnica de arrastrar y soltar, con un modo de respuesta integrado.",
+                "image": "elementor-logo.webp",
+                "docs": "https://elementor.com"
+            },
+            {
+                "name": "Woocommerce",
+                "desc": "Plugin de código abierto para WordPress que permite convertir un sitio web en una tienda en línea completamente funcional. Ofrece herramientas para gestionar productos, pagos, envíos e inventario, con una amplia gama de extensiones para personalizar y escalar la tienda según las necesidades del negocio.",
+                "image": "woocommerce.webp",
+                "docs": "https://woocommerce.com"
+            },
+            {
+                "name": "HTML",
+                "image": "html5.webp",
+                "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+            },
+            {
+                "name": "CSS",
+                "image": "css3.webp",
+                "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+            },
+            {
+                "name": "JavaScript",
+                "image": "javascript.webp",
+                "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+            },
+            {
+                "name": "jQuery",
+                "image": "jquery.webp",
+                "desc": "jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.",
+                "docs": "https://jquery.com/"
+            },
+            {
+                "name": "PHP",
+                "image": "php.webp",
+                "desc": "PHP (acrónimo recursivo de PHP: Hypertext Preprocessor) es un lenguaje de código abierto muy popular especialmente adecuado para el desarrollo web y que puede ser incrustado en HTML.",
+                "docs": "https://www.php.net/manual/es/intro-whatis.php"
+            },
+            {
+                "name": "MySQL",
+                "image": "mysql.webp",
+                "desc": "MySQL es un sistema de gestión de bases de datos relacional de código abierto, ampliamente utilizado para aplicaciones web. Ofrece un alto rendimiento, escalabilidad y flexibilidad, y es compatible con múltiples plataformas.",
+                "docs": "https://dev.mysql.com/doc/"
+            }
+        ],
+        "frameworks": ["Laravel"],
+        "cms": ["WordPress"],
+        "description": "Agencia digital especializada en diseño y desarrollo web, creación de tiendas virtuales y soporte en marketing digital y branding."
+    },
+    {
+        "name": "Comisión Nacional de las Tecnologías de la Información",
+        "shortName": "CONATI",
+        "image": "conati-background.webp",
+        "logo": "conati-logo.webp",
+        "idCard": "carnet-1.webp",
+        "startDate": "2017-04-01",
+        "endDate": "2018-06-29",
+        "position": "seniorSysAnalyst",
+        "roles": [
+            "Programador Web Full Stack",
+            "Administración básica de servidores",
+            "Diseño de bases de datos",
+            "Soporte técnico"
+        ],
+        "rolesDescription": "Desarrollo y mantenimiento de plataformas web institucionales, administración básica de servidores, diseño y optimización de bases de datos, y soporte técnico para garantizar la operatividad de los sistemas informáticos.",
+        "skills": [
+            {
+                "name": "HTML",
+                "image": "html5.webp",
+                "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+            },
+            {
+                "name": "CSS",
+                "image": "css3.webp",
+                "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+            },
+            {
+                "name": "PHP",
+                "image": "php.webp",
+                "desc": "PHP (acrónimo recursivo de PHP: Hypertext Preprocessor) es un lenguaje de código abierto muy popular especialmente adecuado para el desarrollo web y que puede ser incrustado en HTML.",
+                "docs": "https://www.php.net/manual/es/intro-whatis.php"
+            },
+            {
+                "name": "JavaScript",
+                "image": "javascript.webp",
+                "desc": "JavaScript es un lenguaje de programación o de secuencias de comandos que te permite implementar funciones complejas en páginas web.",
+                "docs": "https://developer.mozilla.org/es/docs/Web/JavaScript"
+            },
+            {
+                "name": "jQuery",
+                "image": "jquery.webp",
+                "desc": "jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.",
+                "docs": "https://jquery.com/"
+            },
+            {
+                "name": "MySQL",
+                "image": "mysql.webp",
+                "desc": "MySQL es un sistema de gestión de bases de datos relacional de código abierto, ampliamente utilizado para aplicaciones web. Ofrece un alto rendimiento, escalabilidad y flexibilidad, y es compatible con múltiples plataformas.",
+                "docs": "https://dev.mysql.com/doc/"
+            },
+            {
+                "name": "PostgreSQL",
+                "image": "postgresql.webp",
+                "desc": "PostgreSQL es un sistema de gestión de bases de datos relacional y objeto, conocido por su robustez, extensibilidad y cumplimiento de estándares SQL. Es ideal para aplicaciones que requieren un alto nivel de integridad de datos y soporte para transacciones complejas.",
+                "docs": "https://www.postgresql.org/docs/"
+            }
+        ],
+        "frameworks": ["Laravel", "Bootstrap"],
+        "description": "Impulsa la soberanía tecnológica en Venezuela mediante la promoción del uso de tecnologías de información libres en el sector público, facilitando la digitalización de procesos administrativos y el acceso a la información pública."
+    }
+]
