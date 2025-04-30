@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const URL_BASE = "/";
+const URL_BASE = "/portfolio/";
 
 export type Skills = {
     id: number;

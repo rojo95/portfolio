@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Skills } from "./projects";
 
-const URL_BASE = "/";
+const URL_BASE = "/portfolio/";
 
 export type Work = {
     name: string;

@@ -17,6 +17,8 @@ import { FaGithub, FaUserTie } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 
+const urlBase = "/portfolio";
+
 const routes = [
     {
         name: "home",
@@ -144,7 +146,9 @@ function App() {
                                                     !hidde && (
                                                         <NavLink
                                                             key={key}
-                                                            href={link}
+                                                            href={
+                                                                urlBase + link
+                                                            }
                                                         >
                                                             {t(`links.${name}`)}
                                                         </NavLink>
@@ -182,7 +186,7 @@ function App() {
                                             >
                                                 <NavLink
                                                     key={key}
-                                                    href={link}
+                                                    href={urlBase + link}
                                                     displayed={showMenu}
                                                 >
                                                     <div className="flex items-center justify-between ">
@@ -208,13 +212,13 @@ function App() {
                     <Switch>
                         {routes.map(({ component, link }, key) => (
                             <Route
-                                path={link}
-                                component={component}
                                 key={key}
+                                path={urlBase + link}
+                                component={component}
                             />
                         ))}
                         <Route>
-                            <Redirect to="/" />
+                            <Redirect to={urlBase + "/"} />
                         </Route>
                     </Switch>
                 </main>
@@ -283,7 +287,7 @@ function App() {
                                         !hidde && (
                                             <li key={key}>
                                                 <Link
-                                                    href={link}
+                                                    href={urlBase + link}
                                                     className="hover:underline me-4 md:me-6 dark:text-cyan-300 dark:hover:text-cyan-300 text-black hover:text-black"
                                                 >
                                                     {t(`links.${name}`)}

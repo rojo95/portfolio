@@ -29,6 +29,8 @@ const PLATFORMS = {
     ANDROID: 4,
 } as const;
 
+const urlBase = "/portfolio";
+
 export default function Projects() {
     const { t } = useTranslation();
     const { loading } = useLoading();
@@ -188,7 +190,7 @@ export default function Projects() {
                     ) : (
                         data.map((values, key) => (
                             <Link
-                                href={`/projects/${values.id}`}
+                                href={`${urlBase}/projects/${values.id}`}
                                 key={key}
                                 className={`${
                                     loading ? "fade-out" : "fade-in"
