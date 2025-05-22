@@ -17,6 +17,7 @@ export type Work = {
     skills: Skills[];
     frameworks: string[];
     description?: string;
+    country: string;
 };
 
 export const fetchWorks = async (): Promise<Work[] | null> => {

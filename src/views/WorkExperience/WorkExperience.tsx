@@ -268,6 +268,11 @@ export default function WorkExperience() {
                                 onClick={() => setIsFlipped(!isFlipped)}
                             >
                                 <div className="carnet-back face-content">
+                                    <img
+                                        className="flag"
+                                        src={`${urlBase}images/corners/${selected.country}-corner.png`}
+                                        alt={selected.country}
+                                    />
                                     <div className="white-circle" />
                                     <img
                                         className="watermark"
@@ -334,6 +339,11 @@ export default function WorkExperience() {
                                     </div>
                                 </div>
                                 <div className={`carnet-front face-content`}>
+                                    <img
+                                        className="flag"
+                                        src={`${urlBase}images/corners/${selected.country}-corner.png`}
+                                        alt={selected.logo}
+                                    />
                                     <div className="secondary-top face-content" />
                                     <div className="primary-top face-content" />
                                     <div className="blue-circle face-content" />

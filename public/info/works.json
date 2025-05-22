@@ -44,7 +44,8 @@
             }
         ],
         "frameworks": ["React Native", "Angular Js"],
-        "description": "Especializados en la digitalización del sector de instaladores y constructores, brindando soluciones tecnológicas que optimizan los procesos empresariales."
+        "description": "Especializados en la digitalización del sector de instaladores y constructores, brindando soluciones tecnológicas que optimizan los procesos empresariales.",
+        "country": "es"
     },
     {
         "name": "Grupo AKR",
@@ -122,7 +123,8 @@
                 "tech": "React Js, Node Js (con TypeScript), Woocommerce, Mercado Libre, Odoo, Shopify, Bootstrap, Styled Components, y gestión de sesiones a través de estados contextuales.",
                 "goals": "Mejoré la eficiencia del sistema al implementar nuevas características y optimizar el código existente, lo que resultó en un aumento significativo en la eficiencia operativa de la publicación y actualización de productos."
             }
-        ]
+        ],
+        "country": "ve"
     },
     {
         "name": "Servicio Desconcentrado Nacional de Normalización Calidad Metrología y Reglamentaciones Técnicas",
@@ -198,7 +200,8 @@
             "Bootstrap 4",
             "Bootstrap 5"
         ],
-        "description": "Gestión del Sistema Venezolano para la Calidad, promoviendo políticas y programas para asegurar el acceso a bienes y servicios de calidad."
+        "description": "Gestión del Sistema Venezolano para la Calidad, promoviendo políticas y programas para asegurar el acceso a bienes y servicios de calidad.",
+        "country": "ve"
     },
     {
         "name": "Fondo de Desarrollo para la Normalización, Calidad, Certificación y Metrología",
@@ -274,7 +277,8 @@
             "Bootstrap 4",
             "Bootstrap 5"
         ],
-        "description": "Promoción de actividades de normalización y certificación, contribuyendo al desarrollo y competitividad de las organizaciones venezolanas."
+        "description": "Promoción de actividades de normalización y certificación, contribuyendo al desarrollo y competitividad de las organizaciones venezolanas.",
+        "country": "ve"
     },
     {
         "name": "INTACTILE C.A.",
@@ -330,7 +334,8 @@
             }
         ],
         "frameworks": ["React Js", "React Native Js"],
-        "description": "Desarrollo y mantenimiento de soluciones digitales utilizando tecnologías avanzadas para ofrecer plataformas web modernas y eficientes."
+        "description": "Desarrollo y mantenimiento de soluciones digitales utilizando tecnologías avanzadas para ofrecer plataformas web modernas y eficientes.",
+        "country": "ve"
     },
     {
         "name": "NINWEB",
@@ -406,7 +411,8 @@
         ],
         "frameworks": ["Laravel"],
         "cms": ["WordPress"],
-        "description": "Agencia digital especializada en diseño y desarrollo web, creación de tiendas virtuales y soporte en marketing digital y branding."
+        "description": "Agencia digital especializada en diseño y desarrollo web, creación de tiendas virtuales y soporte en marketing digital y branding.",
+        "country": "ve"
     },
     {
         "name": "Comisión Nacional de las Tecnologías de la Información",
@@ -468,6 +474,7 @@
             }
         ],
         "frameworks": ["Laravel", "Bootstrap"],
-        "description": "Impulsa la soberanía tecnológica en Venezuela mediante la promoción del uso de tecnologías de información libres en el sector público, facilitando la digitalización de procesos administrativos y el acceso a la información pública."
+        "description": "Impulsa la soberanía tecnológica en Venezuela mediante la promoción del uso de tecnologías de información libres en el sector público, facilitando la digitalización de procesos administrativos y el acceso a la información pública.",
+        "country": "ve"
     }
 ]

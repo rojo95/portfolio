@@ -531,3 +531,17 @@
         width: 400px;
     }
 }
+
+.flag {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 50px !important;
+    height: 50px !important;
+    z-index: 10;
+}
+
+.carnet-back .flag {
+    transform: rotate(-90deg);
+    left: 0px;
+}
