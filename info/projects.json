@@ -1,6 +1,178 @@
 {
     "projects": [
         {
+            "id": 13,
+            "title": "Ride Hailing SPA",
+            "platforms": [1, 2, 3],
+            "type": ["Single-Page Application", "Responsive"],
+            "thumb": "ride-hailing-11.png",
+            "description": "",
+            "primaryTech": 5,
+            "tech": [
+                {
+                    "name": "Vue",
+                    "desc": "Un marco accesible, performante y versátil para construir interfaces de usuario web.",
+                    "image": "vue.webp",
+                    "docs": "https://vuejs.org"
+                },
+                {
+                    "name": "Leaflet",
+                    "image": "leaflet-logo.webp",
+                    "desc": "Leaflet es una librería JavaScript open source ampliamente utilizada para la publicación de mapas en la web.",
+                    "docs": "https://leafletjs.com/"
+                },
+                {
+                    "name": "Node JS",
+                    "desc": "Es un entorno de ejecución de JavaScript multiplataforma, de código abierto y gratuito que permite a los desarrolladores crear servidores, aplicaciones web, herramientas de línea de comando y scripts.",
+                    "image": "node.webp"
+                },
+                {
+                    "name": "TypeScript",
+                    "desc": "TypeScript es un lenguaje de programación fuertemente tipado que se basa en JavaScript, lo que le brinda mejores herramientas a cualquier escala.",
+                    "image": "typescript.webp"
+                },
+                {
+                    "name": "Pinia",
+                    "desc": "Pinia es una biblioteca de tiendas y un marco de gestión de estado para Vue.js. Diseñado principalmente para crear aplicaciones web frontales, utiliza sintaxis declarativa y ofrece su propia API de administración de estado.",
+                    "image": "pinia.png"
+                },
+                {
+                    "name": "Vuetify",
+                    "desc": "Biblioteca de código abierto que facilita la creación de interfaces de usuario (UI) para aplicaciones Vue.js",
+                    "image": "vuetify-logo-v3.webp"
+                },
+                {
+                    "name": "Joi",
+                    "desc": "Librería de validación de datos para JavaScript. Permite definir esquemas para validar objetos, strings, números, arrays, etc., de forma declarativa y clara.",
+                    "image": ""
+                },
+                {
+                    "name": "Express",
+                    "desc": "Framework minimalista y flexible para Node.js que permite crear servidores web y APIs de forma rápida y sencilla.",
+                    "image": "expressjs.webp"
+                },
+                {
+                    "name": "JWT",
+                    "desc": "JSON Web Token (JWT) es un estándar para transmitir información de forma segura entre partes como un objeto JSON, comúnmente usado para autenticación y autorización.",
+                    "image": ""
+                },
+                {
+                    "name": "Mongo DB",
+                    "desc": "Base de datos NoSQL orientada a documentos.",
+                    "image": "mongo.webp"
+                },
+                {
+                    "name": "HTML",
+                    "image": "html5.webp",
+                    "desc": "HTML es un lenguaje de marcado que nos permite indicar la estructura de nuestro documento mediante etiquetas.",
+                    "docs": "https://developer.mozilla.org/es/docs/Web/HTML"
+                },
+                {
+                    "name": "CSS",
+                    "image": "css3.webp",
+                    "desc": "Sass es un lenguaje de hojas de estilo compilado en CSS. Le permite usar variables, reglas anidadas, mixins, funciones y más, todo con una sintaxis totalmente compatible con CSS. Sass ayuda a mantener bien organizadas las hojas de estilo grandes y facilita compartir el diseño dentro y entre proyectos."
+                }
+            ],
+            "gallery": [
+                {
+                    "img": "ride-hailing-1.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-2.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-3.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-4.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-5.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-6.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-7.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-8.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-9.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-10.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-11.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-12.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-13.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-14.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-15.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-16.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-17.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-18.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-19.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-20.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-21.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-22.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-23.png",
+                    "desc": ""
+                },
+                {
+                    "img": "ride-hailing-24.png",
+                    "desc": ""
+                }
+            ]
+        },
+        {
             "id": 12,
             "title": "Eurekacloud",
             "platforms": [1, 2, 3, 4],
