@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import "./Projects.css";
 import { useTranslation } from "react-i18next";
 import { fetchProjects, Project } from "@api/projects";
@@ -11,6 +11,7 @@ import {
 import { Link } from "wouter";
 import { useLoading } from "@hooks/useLoading/useLoading";
 import loadingProjImg from "@assets/images/loading-project.webp";
+import useIntersectionList from "@hooks/useIntersectionList/useIntersectionList";
 
 const TECH = {
     REACT: 1,
@@ -37,14 +38,20 @@ export default function Projects() {
     const refCard = useRef<HTMLDivElement | null>(null);
     const [data, setData] = useState<Project[]>([]);
     const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
-    const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([]);
+    const imagesLoaded = useRef<Set<number>>(new Set());
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+    const [cardRefs, visibleMap] = useIntersectionList({
+        count: data.length,
+        options: { rootMargin: "100px" },
+    });
 
     const handleMouseEnter = (el: HTMLDivElement) => {
         refCard.current = el;
         if (!refCard.current) return;
 
         const style = document.querySelector<HTMLStyleElement>(".hover");
-        let x: NodeJS.Timeout;
+        let x: ReturnType<typeof setTimeout>;
 
         const handleMouseMove = (e: MouseEvent | TouchEvent) => {
             let pos: [number, number] = [0, 0];
@@ -113,22 +120,18 @@ export default function Projects() {
         el.addEventListener("touchend", handleMouseOut);
         el.addEventListener("touchcancel", handleMouseOut);
 
-        // Guardar los manejadores en el elemento para poder eliminarlos después
-        el.dataset.eventHandlers = JSON.stringify({
-            handleMouseMove,
-            handleMouseOut,
-        });
+        (el as any)._mmove = handleMouseMove;
+        (el as any)._mout = handleMouseOut;
     };
 
     const handleMouseLeave = () => {
         if (!refCard.current) return;
 
         const el = refCard.current!;
-        if (!el.dataset.eventHandlers) return;
 
-        const { handleMouseMove, handleMouseOut } = JSON.parse(
-            el.dataset.eventHandlers
-        );
+        const handleMouseMove = (el as any)._mmove;
+        const handleMouseOut = (el as any)._mout;
+        if (!handleMouseMove || !handleMouseOut) return;
 
         el.removeEventListener("mousemove", handleMouseMove);
         el.removeEventListener("touchmove", handleMouseMove);
@@ -136,18 +139,16 @@ export default function Projects() {
         el.removeEventListener("touchend", handleMouseOut);
         el.removeEventListener("touchcancel", handleMouseOut);
 
-        el.removeAttribute("data-event-handlers");
+        delete (el as any)._mmove;
+        delete (el as any)._mout;
         el.removeAttribute("style");
+
+        refCard.current = null;
     };
 
     const handleImageLoad = (index: number) => {
-        console.log("cargado: ", index);
-
-        setImagesLoaded((prev) => {
-            const updated = [...prev];
-            updated[index] = true;
-            return updated;
-        });
+        imagesLoaded.current.add(index);
+        forceUpdate(); // re-render mínimo, sin clonar arrays
     };
 
     async function getProjects() {
@@ -158,7 +159,7 @@ export default function Projects() {
             const { projects } = data;
 
             setData(projects);
-            setImagesLoaded(Array(projects.length).fill(false));
+            imagesLoaded.current = new Set();
         } catch (error) {
             console.error(error);
         }
@@ -192,9 +193,7 @@ export default function Projects() {
                             <Link
                                 href={`${urlBase}projects/${values.id}`}
                                 key={key}
-                                className={`${
-                                    loading ? "fade-out" : "fade-in"
-                                }`}
+                                className={`${loading ? "fade-out" : "fade-in"}`}
                                 style={{
                                     animationDelay: loading
                                         ? "0s"
@@ -202,25 +201,25 @@ export default function Projects() {
                                 }}
                             >
                                 <div
-                                    className={`card z-0 transition ${
-                                        values.primaryTech === TECH.REACT
-                                            ? "react"
-                                            : values.primaryTech ===
-                                              TECH.LARAVEL
+                                    ref={(el) => { cardRefs.current[key] = el; }}
+                                    className={`card z-0 transition ${values.primaryTech === TECH.REACT
+                                        ? "react"
+                                        : values.primaryTech ===
+                                            TECH.LARAVEL
                                             ? "laravel"
                                             : values.primaryTech ===
-                                              TECH.ANGULAR
-                                            ? "angular"
-                                            : values.primaryTech === TECH.IONIC
-                                            ? "ionic"
-                                            : values.primaryTech === TECH.VUE
-                                            ? "vue"
-                                            : "wordpress"
-                                    } ${
-                                        isSmallScreen
+                                                TECH.ANGULAR
+                                                ? "angular"
+                                                : values.primaryTech === TECH.IONIC
+                                                    ? "ionic"
+                                                    : values.primaryTech === TECH.VUE
+                                                        ? "vue"
+                                                        : "wordpress"
+                                        } ${isSmallScreen
                                             ? ""
                                             : "animated disable-touch"
-                                    } cursor-pointer relative`}
+                                        } cursor-pointer relative
+                                        ${!visibleMap[key] ? "paused" : ""}`}
                                     style={{
                                         animationDelay: `${key * 0.5}s`,
                                     }}
@@ -232,7 +231,7 @@ export default function Projects() {
                                         !isSmallScreen && handleMouseLeave()
                                     }
                                 >
-                                    {!imagesLoaded[key] && (
+                                    {!imagesLoaded.current.has(key) && (
                                         <div className="absolute inset-0 flex items-center justify-center bg-white/70 z-20">
                                             <img
                                                 className="proj-thumb blur"
@@ -253,24 +252,23 @@ export default function Projects() {
                                             <div className="hexagon bg-gray-200 size-10 grid place-items-center">
                                                 <img
                                                     width={30}
-                                                    src={`images/knowledge/${
-                                                        values.primaryTech ===
+                                                    src={`images/knowledge/${values.primaryTech ===
                                                         TECH.REACT
-                                                            ? "react"
-                                                            : values.primaryTech ===
-                                                              TECH.LARAVEL
+                                                        ? "react"
+                                                        : values.primaryTech ===
+                                                            TECH.LARAVEL
                                                             ? "laravel"
                                                             : values.primaryTech ===
-                                                              TECH.ANGULAR
-                                                            ? "angular"
-                                                            : values.primaryTech ===
-                                                              TECH.IONIC
-                                                            ? "ionic"
-                                                            : values.primaryTech ===
-                                                              TECH.VUE
-                                                            ? "vue"
-                                                            : "wordpress"
-                                                    }.webp`}
+                                                                TECH.ANGULAR
+                                                                ? "angular"
+                                                                : values.primaryTech ===
+                                                                    TECH.IONIC
+                                                                    ? "ionic"
+                                                                    : values.primaryTech ===
+                                                                        TECH.VUE
+                                                                        ? "vue"
+                                                                        : "wordpress"
+                                                        }.webp`}
                                                     alt={
                                                         "knowledge" +
                                                         values.primaryTech
