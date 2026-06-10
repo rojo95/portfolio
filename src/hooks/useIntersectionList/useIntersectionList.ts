@@ -13,19 +13,30 @@ export default function useIntersectionList({
     useEffect(() => {
         if (count === 0) return;
 
+        setVisibleMap(new Array(count).fill(false));
+
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                const index = refs.current.indexOf(entry.target as HTMLElement);
-                if (index === -1) return;
-                setVisibleMap((prev) => {
-                    const next = [...prev];
-                    next[index] = entry.isIntersecting;
-                    return next;
-                });
+            setVisibleMap((prev) => {
+                const next = [...prev];
+                let changed = false;
+                for (const entry of entries) {
+                    const index = refs.current.indexOf(
+                        entry.target as HTMLElement
+                    );
+                    if (index === -1) continue;
+                    if (next[index] !== entry.isIntersecting) {
+                        next[index] = entry.isIntersecting;
+                        changed = true;
+                    }
+                }
+                return changed ? next : prev;
             });
         }, options);
 
-        refs.current.forEach((el) => { if (el) observer.observe(el); });
+        const currentRefs = [...refs.current];
+        for (const el of currentRefs) {
+            if (el) observer.observe(el);
+        }
 
         return () => observer.disconnect();
     }, [count]);

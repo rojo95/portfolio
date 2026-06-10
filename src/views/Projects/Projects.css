@@ -167,7 +167,7 @@
             var(--color1) 48%,
             var(--color2) 52%,
             transparent 75%);
-    background-position: 50% 50%;
+    background-position: var(--gx, 50%) var(--gy, 50%);
     background-size: 250% 250%;
     opacity: 0.88;
     filter: brightness(0.66) contrast(1.33);
@@ -185,20 +185,20 @@
 
 .card.animated {
     transition: none;
-    -webkit-animation: holoCard 12s ease 0s 1;
-    animation: holoCard 12s ease 0s 1;
+    -webkit-animation: holoCard 5s ease 0s 1;
+    animation: holoCard 5s ease 0s 1;
 }
 
 .card.animated:before {
     transition: none;
-    -webkit-animation: holoGradient 12s ease 0s 1;
-    animation: holoGradient 12s ease 0s 1;
+    -webkit-animation: holoGradient 5s ease 0s 1;
+    animation: holoGradient 5s ease 0s 1;
 }
 
 .card.animated:after {
     transition: none;
-    -webkit-animation: holoSparkle 12s ease 0s 1;
-    animation: holoSparkle 12s ease 0s 1;
+    -webkit-animation: holoSparkle 5s ease 0s 1;
+    animation: holoSparkle 5s ease 0s 1;
 }
 
 @-webkit-keyframes holoSparkle {
@@ -508,7 +508,7 @@
 .card.paused,
 .card.paused:before,
 .card.paused:after {
-    animation-play-state: none !important;
+    animation-play-state: paused !important;
     will-change: auto;
-    background-image: ""
+    background-image: none;
 }

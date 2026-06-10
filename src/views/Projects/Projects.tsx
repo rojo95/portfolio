@@ -32,13 +32,38 @@ const PLATFORMS = {
 
 const urlBase = import.meta.env.BASE_URL;
 
+function getTechClass(techId: number): string {
+    switch (techId) {
+        case TECH.REACT: return "react";
+        case TECH.LARAVEL: return "laravel";
+        case TECH.ANGULAR: return "angular";
+        case TECH.IONIC: return "ionic";
+        case TECH.VUE: return "vue";
+        default: return "wordpress";
+    }
+}
+
+function getTechImage(techId: number): string {
+    switch (techId) {
+        case TECH.REACT: return "react";
+        case TECH.LARAVEL: return "laravel";
+        case TECH.ANGULAR: return "angular";
+        case TECH.IONIC: return "ionic";
+        case TECH.VUE: return "vue";
+        default: return "wordpress";
+    }
+}
+
 export default function Projects() {
     const { t } = useTranslation();
     const { loading } = useLoading();
-    const refCard = useRef<HTMLDivElement | null>(null);
     const [data, setData] = useState<Project[]>([]);
     const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
     const imagesLoaded = useRef<Set<number>>(new Set());
+    const hoveredCard = useRef<{
+        el: HTMLDivElement;
+        cleanup: () => void;
+    } | null>(null);
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
     const [cardRefs, visibleMap] = useIntersectionList({
@@ -46,15 +71,44 @@ export default function Projects() {
         options: { rootMargin: "100px" },
     });
 
-    const handleMouseEnter = (el: HTMLDivElement) => {
-        refCard.current = el;
-        if (!refCard.current) return;
+    const updateCardEffect = (card: HTMLDivElement, pos: [number, number]) => {
+        const l = pos[0];
+        const t = pos[1];
+        const h = card.clientHeight;
+        const w = card.clientWidth;
+        const px = Math.abs(Math.floor((100 / w) * l) - 100);
+        const py = Math.abs(Math.floor((100 / h) * t) - 100);
+        const pa = 50 - px + (50 - py);
+        const lp = 50 + (px - 50) / 1.5;
+        const tp = 50 + (py - 50) / 1.5;
+        const px_spark = 50 + (px - 50) / 7;
+        const py_spark = 50 + (py - 50) / 7;
+        const p_opc = 20 + Math.abs(pa) * 1.5;
+        const ty = ((tp - 50) / 2) * -1;
+        const tx = ((lp - 50) / 1.5) * 0.5;
 
-        const style = document.querySelector<HTMLStyleElement>(".hover");
-        let x: ReturnType<typeof setTimeout>;
+        card.style.setProperty("--gx", `${lp}%`);
+        card.style.setProperty("--gy", `${tp}%`);
+        card.style.setProperty("--sx", `${px_spark}%`);
+        card.style.setProperty("--sy", `${py_spark}%`);
+        card.style.setProperty("--op", `${p_opc / 100}`);
+        card.style.transform = `rotateX(${ty}deg) rotateY(${tx}deg)`;
+    };
+
+    const handleMouseEnter = (el: HTMLDivElement) => {
+        if (isSmallScreen) return;
+
+        if (hoveredCard.current) {
+            hoveredCard.current.cleanup();
+        }
+
+        el.classList.remove("animated");
+
+        let rafId: number;
+        let lastPos: [number, number] | null = null;
 
         const handleMouseMove = (e: MouseEvent | TouchEvent) => {
-            let pos: [number, number] = [0, 0];
+            let pos: [number, number];
             e.preventDefault();
             if ("touches" in e) {
                 pos = [e.touches[0].clientX, e.touches[0].clientY];
@@ -62,102 +116,64 @@ export default function Projects() {
                 pos = [e.offsetX, e.offsetY];
             }
 
-            const card = refCard.current!;
-            const l = pos[0];
-            const t = pos[1];
-            const h = card.clientHeight;
-            const w = card.clientWidth;
-            const px = Math.abs(Math.floor((100 / w) * l) - 100);
-            const py = Math.abs(Math.floor((100 / h) * t) - 100);
-            const pa = 50 - px + (50 - py);
-            const lp = 50 + (px - 50) / 1.5;
-            const tp = 50 + (py - 50) / 1.5;
-            const px_spark = 50 + (px - 50) / 7;
-            const py_spark = 50 + (py - 50) / 7;
-            const p_opc = 20 + Math.abs(pa) * 1.5;
-            const ty = ((tp - 50) / 2) * -1;
-            const tx = ((lp - 50) / 1.5) * 0.5;
-
-            const grad_pos = `background-position: ${lp}% ${tp}%;`;
-            const sprk_pos = `background-position: ${px_spark}% ${py_spark}%;`;
-            const opc = `opacity: ${p_opc / 100};`;
-            const tf = `transform: rotateX(${ty}deg) rotateY(${tx}deg)`;
-
-            const styleContent = `
-                .card:hover:before { ${grad_pos} }
-                .card:hover:after { ${sprk_pos} ${opc} }
-            `;
-
-            card.classList.remove("animated");
-            card.setAttribute("style", tf);
-            if (style) {
-                style.innerHTML = styleContent;
+            if (
+                lastPos &&
+                Math.abs(pos[0] - lastPos[0]) < 3 &&
+                Math.abs(pos[1] - lastPos[1]) < 3
+            ) {
+                return;
             }
+            lastPos = pos;
 
-            if ("touches" in e) {
-                return false;
-            }
-            clearTimeout(x);
+            cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => updateCardEffect(el, pos));
         };
 
-        const handleMouseOut = () => {
-            const card = refCard.current;
-            if (!card) return;
-
-            if (style) {
-                style.innerHTML = "";
-            }
-            card.removeAttribute("style");
-
-            x = setTimeout(() => {
-                card.classList.add("animated");
+        const handleMouseLeave = () => {
+            cancelAnimationFrame(rafId);
+            el.removeAttribute("style");
+            setTimeout(() => {
+                el.classList.add("animated");
             }, 2500);
         };
 
-        el.addEventListener("mousemove", handleMouseMove);
-        el.addEventListener("touchmove", handleMouseMove);
-        el.addEventListener("mouseleave", handleMouseOut);
-        el.addEventListener("touchend", handleMouseOut);
-        el.addEventListener("touchcancel", handleMouseOut);
+        el.addEventListener("mousemove", handleMouseMove, { passive: true });
+        el.addEventListener("touchmove", handleMouseMove, { passive: true });
+        el.addEventListener("mouseleave", handleMouseLeave);
+        el.addEventListener("touchend", handleMouseLeave);
+        el.addEventListener("touchcancel", handleMouseLeave);
 
-        (el as any)._mmove = handleMouseMove;
-        (el as any)._mout = handleMouseOut;
+        hoveredCard.current = {
+            el,
+            cleanup: () => {
+                cancelAnimationFrame(rafId);
+                el.removeEventListener("mousemove", handleMouseMove);
+                el.removeEventListener("touchmove", handleMouseMove);
+                el.removeEventListener("mouseleave", handleMouseLeave);
+                el.removeEventListener("touchend", handleMouseLeave);
+                el.removeEventListener("touchcancel", handleMouseLeave);
+                el.removeAttribute("style");
+            },
+        };
     };
 
     const handleMouseLeave = () => {
-        if (!refCard.current) return;
-
-        const el = refCard.current!;
-
-        const handleMouseMove = (el as any)._mmove;
-        const handleMouseOut = (el as any)._mout;
-        if (!handleMouseMove || !handleMouseOut) return;
-
-        el.removeEventListener("mousemove", handleMouseMove);
-        el.removeEventListener("touchmove", handleMouseMove);
-        el.removeEventListener("mouseleave", handleMouseOut);
-        el.removeEventListener("touchend", handleMouseOut);
-        el.removeEventListener("touchcancel", handleMouseOut);
-
-        delete (el as any)._mmove;
-        delete (el as any)._mout;
-        el.removeAttribute("style");
-
-        refCard.current = null;
+        if (hoveredCard.current) {
+            hoveredCard.current.cleanup();
+            hoveredCard.current = null;
+        }
     };
 
     const handleImageLoad = (index: number) => {
         imagesLoaded.current.add(index);
-        forceUpdate(); // re-render mínimo, sin clonar arrays
+        forceUpdate();
     };
 
     async function getProjects() {
         try {
             const data = await fetchProjects();
             if (!data) return;
-
             const { projects } = data;
-
             setData(projects);
             imagesLoaded.current = new Set();
         } catch (error) {
@@ -178,6 +194,9 @@ export default function Projects() {
 
         return () => {
             mediaQuery.removeEventListener("change", handleMediaQueryChange);
+            if (hoveredCard.current) {
+                hoveredCard.current.cleanup();
+            }
         };
     }, []);
 
@@ -202,20 +221,7 @@ export default function Projects() {
                             >
                                 <div
                                     ref={(el) => { cardRefs.current[key] = el; }}
-                                    className={`card z-0 transition ${values.primaryTech === TECH.REACT
-                                        ? "react"
-                                        : values.primaryTech ===
-                                            TECH.LARAVEL
-                                            ? "laravel"
-                                            : values.primaryTech ===
-                                                TECH.ANGULAR
-                                                ? "angular"
-                                                : values.primaryTech === TECH.IONIC
-                                                    ? "ionic"
-                                                    : values.primaryTech === TECH.VUE
-                                                        ? "vue"
-                                                        : "wordpress"
-                                        } ${isSmallScreen
+                                    className={`card z-0 transition ${getTechClass(values.primaryTech)} ${isSmallScreen
                                             ? ""
                                             : "animated disable-touch"
                                         } cursor-pointer relative
@@ -252,23 +258,7 @@ export default function Projects() {
                                             <div className="hexagon bg-gray-200 size-10 grid place-items-center">
                                                 <img
                                                     width={30}
-                                                    src={`images/knowledge/${values.primaryTech ===
-                                                        TECH.REACT
-                                                        ? "react"
-                                                        : values.primaryTech ===
-                                                            TECH.LARAVEL
-                                                            ? "laravel"
-                                                            : values.primaryTech ===
-                                                                TECH.ANGULAR
-                                                                ? "angular"
-                                                                : values.primaryTech ===
-                                                                    TECH.IONIC
-                                                                    ? "ionic"
-                                                                    : values.primaryTech ===
-                                                                        TECH.VUE
-                                                                        ? "vue"
-                                                                        : "wordpress"
-                                                        }.webp`}
+                                                    src={`images/knowledge/${getTechImage(values.primaryTech)}.webp`}
                                                     alt={
                                                         "knowledge" +
                                                         values.primaryTech
@@ -316,7 +306,6 @@ export default function Projects() {
                         ))
                     )}
                 </section>
-                <style className="hover"></style>
             </div>
         </>
     );
