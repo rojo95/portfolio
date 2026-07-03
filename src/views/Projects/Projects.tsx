@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import "./Projects.css";
 import { useTranslation } from "react-i18next";
 import { fetchProjects, Project } from "@api/projects";
@@ -54,6 +54,18 @@ function getTechImage(techId: number): string {
     }
 }
 
+/** Genera una clave única para cada tecnología, separando React de React Native */
+function getFilterKey(t: { name: string; image?: string | null }): string | null {
+    if (!t.image) return null;
+    // Separar React de React Native (ambos usan "react.webp")
+    if (t.image === "react.webp") {
+        return t.name.toLowerCase().includes("react native")
+            ? "react-native"
+            : "react";
+    }
+    return t.image;
+}
+
 export default function Projects() {
     const { t } = useTranslation();
     const { loading } = useLoading();
@@ -66,8 +78,77 @@ export default function Projects() {
     } | null>(null);
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
+    // Filter state
+    const [activeFilter, setActiveFilter] = useState<string | null>(null);
+    const [prevFilterData, setPrevFilterData] = useState<Project[]>([]);
+    const [isFilterTransitioning, setIsFilterTransitioning] = useState(false);
+
+    // Panel scroll fade state
+    const panelRef = useRef<HTMLDivElement>(null);
+    const [panelScrollInfo, setPanelScrollInfo] = useState({
+        scrollable: false,
+        atTop: true,
+        atBottom: true,
+    });
+
+    // Extract unique technologies from all projects (con React/React Native separados)
+    const techFilters = useMemo(() => {
+        const techMap = new Map<string, { image: string; name: string }>();
+        data.forEach((project) => {
+            project.tech.forEach((t) => {
+                const key = getFilterKey(t);
+                if (key && !techMap.has(key)) {
+                    techMap.set(key, {
+                        image: t.image || "",
+                        name: key === "react"
+                            ? "React"
+                            : key === "react-native"
+                                ? "React Native"
+                                : t.name,
+                    });
+                }
+            });
+        });
+        return Array.from(techMap.values());
+    }, [data]);
+
+    /** Revisa si un proyecto coincide con una clave de filtro */
+    function projectMatchesFilter(project: Project, filterKey: string): boolean {
+        return project.tech.some((t) => getFilterKey(t) === filterKey);
+    }
+
+    // Filter projects by selected technology
+    const filteredData = useMemo(() => {
+        if (!activeFilter) return data;
+        return data.filter((project) => projectMatchesFilter(project, activeFilter));
+    }, [data, activeFilter]);
+
+    // Convierte un tech filter a la clave de filtro (separa React de React Native)
+    const getTechFilterKey = (tech: { image: string; name: string }): string =>
+        tech.image === "react.webp"
+            ? (tech.name === "React Native" ? "react-native" : "react")
+            : tech.image;
+
+    // Data to render: during transition show previous data exiting, otherwise show filtered
+    const displayData = isFilterTransitioning ? prevFilterData : filteredData;
+
+    const handleFilterClick = (key: string | null) => {
+        if (isFilterTransitioning) return;
+        if (key === activeFilter) return;
+
+        // Snapshot current visible data for exit animation
+        setPrevFilterData(displayData);
+        setIsFilterTransitioning(true);
+
+        // Wait for exit animation to complete, then update filter
+        setTimeout(() => {
+            setActiveFilter(key);
+            setIsFilterTransitioning(false);
+        }, 400);
+    };
+
     const [cardRefs, visibleMap] = useIntersectionList({
-        count: data.length,
+        count: displayData.length,
         options: { rootMargin: "100px" },
     });
 
@@ -181,6 +262,40 @@ export default function Projects() {
         }
     }
 
+    // Detectar scroll en el panel para aplicar fade
+    useEffect(() => {
+        const panel = panelRef.current;
+        if (!panel) return;
+
+        const updateScrollInfo = () => {
+            const scrollable = panel.scrollHeight > panel.clientHeight + 2;
+            const atTop = panel.scrollTop <= 4;
+            const atBottom =
+                panel.scrollTop + panel.clientHeight >=
+                panel.scrollHeight - 4;
+            setPanelScrollInfo({ scrollable, atTop, atBottom });
+        };
+
+        updateScrollInfo();
+        panel.addEventListener("scroll", updateScrollInfo, { passive: true });
+        const observer = new ResizeObserver(updateScrollInfo);
+        observer.observe(panel);
+
+        return () => {
+            panel.removeEventListener("scroll", updateScrollInfo);
+            observer.disconnect();
+        };
+    }, [techFilters]);
+
+    const getPanelMaskClass = (): string => {
+        const { scrollable, atTop, atBottom } = panelScrollInfo;
+        if (!scrollable) return "";
+        if (!atTop && !atBottom) return "mask-both";
+        if (!atTop) return "mask-top";
+        if (!atBottom) return "mask-bottom";
+        return "";
+    };
+
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 768px)");
         const handleMediaQueryChange = (e: MediaQueryListEvent) => {
@@ -203,20 +318,89 @@ export default function Projects() {
     return (
         <>
             <title>{`Johan Román - ${t("links.projects")}`}</title>
-            <div className="flex items-center justify-center relative">
+            <div className="projects-layout">
+                {/* ===== PANEL LATERAL (DESKTOP) ===== */}
+                {data.length > 0 && (
+                    <aside
+                        ref={panelRef}
+                        className={`tech-filter-panel hide-mobile ${getPanelMaskClass()}`}
+                    >
+                        <span className="panel-title">Tech</span>
+                        <button
+                            className={`panel-filter-btn ${activeFilter === null ? "active" : ""}`}
+                            onClick={() => handleFilterClick(null)}
+                            title="All"
+                        >
+                            <span className="all-label">All</span>
+                        </button>
+                        <div className="panel-divider" />
+                        {techFilters.map((tech) => {
+                            const filterKey = getTechFilterKey(tech);
+                            return (
+                                <button
+                                    key={filterKey}
+                                    className={`panel-filter-btn ${activeFilter === filterKey ? "active" : ""}`}
+                                    onClick={() => handleFilterClick(filterKey)}
+                                    title={tech.name}
+                                >
+                                    <img
+                                        src={`images/knowledge/${tech.image}`}
+                                        alt={tech.name}
+                                    />
+                                </button>
+                            );
+                        })}
+                    </aside>
+                )}
+
+                {/* ===== BARRA HORIZONTAL (MOBILE) ===== */}
+                {data.length > 0 && (
+                    <div className="tech-filter-wrapper-mobile hide-desktop">
+                        <div className="tech-filter-bar-mobile">
+                            <button
+                                className={`mobile-filter-btn ${activeFilter === null ? "active" : ""}`}
+                                onClick={() => handleFilterClick(null)}
+                                title="All"
+                            >
+                                <span className="all-label">All</span>
+                            </button>
+                            {techFilters.map((tech) => {
+                                const filterKey = getTechFilterKey(tech);
+                                return (
+                                    <button
+                                        key={filterKey}
+                                        className={`mobile-filter-btn ${activeFilter === filterKey ? "active" : ""}`}
+                                        onClick={() => handleFilterClick(filterKey)}
+                                        title={tech.name}
+                                    >
+                                        <img
+                                            src={`images/knowledge/${tech.image}`}
+                                            alt={tech.name}
+                                        />
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+
                 <section className="cards">
                     {!data || loading ? (
                         <>{t("loading")}...</>
+                    ) : displayData.length === 0 ? (
+                        <p className="text-white/60 text-lg mt-10">
+                            {t("projects.noResults") || "No projects found"}
+                        </p>
                     ) : (
-                        data.map((values, key) => (
+                        displayData.map((values, key) => (
                             <Link
                                 href={`${urlBase}projects/${values.id}`}
-                                key={key}
-                                className={`${loading ? "fade-out" : "fade-in"}`}
+                                key={values.id}
+                                className={`${isFilterTransitioning ? "fade-out-filter" : "fade-in"}`}
                                 style={{
-                                    animationDelay: loading
+                                    animationDelay: isFilterTransitioning
                                         ? "0s"
-                                        : `${key * 0.2}s`,
+                                        : `${key * 0.15}s`,
                                 }}
                             >
                                 <div
