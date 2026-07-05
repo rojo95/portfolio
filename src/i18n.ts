@@ -33,6 +33,7 @@ const resources = {
             views: {
                 project: {
                     "tech-stack": "Technical Stack",
+                    "all": "All",
                 },
                 workExperience: {
                     validUntil: "Valid until",
@@ -116,6 +117,7 @@ const resources = {
             views: {
                 project: {
                     "tech-stack": "Stack Tecnológico",
+                    "all": "Todo",
                 },
                 workExperience: {
                     validUntil: "Válido hasta",
@@ -199,6 +201,7 @@ const resources = {
             views: {
                 project: {
                     "tech-stack": "Stack Tecnológico",
+                    "all": "Tudo",
                 },
                 workExperience: {
                     validUntil: "Válido até",

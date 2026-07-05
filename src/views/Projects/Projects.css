@@ -122,7 +122,8 @@
 }
 
 .card:after {
-    background-image: url("@assets/images/sparkles.gif"),
+    background-image: 
+        /* url("@assets/images/sparkles.gif"), */
         url(@assets/images/holo.webp),
         linear-gradient(125deg,
             #ff008450 15%,

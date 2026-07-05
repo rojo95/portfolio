@@ -325,13 +325,12 @@ export default function Projects() {
                         ref={panelRef}
                         className={`tech-filter-panel hide-mobile ${getPanelMaskClass()}`}
                     >
-                        <span className="panel-title">Tech</span>
                         <button
                             className={`panel-filter-btn ${activeFilter === null ? "active" : ""}`}
                             onClick={() => handleFilterClick(null)}
-                            title="All"
+                            title={t("views.project.all")}
                         >
-                            <span className="all-label">All</span>
+                            <span className="all-label">{t("views.project.all")}</span>
                         </button>
                         <div className="panel-divider" />
                         {techFilters.map((tech) => {
@@ -360,9 +359,9 @@ export default function Projects() {
                             <button
                                 className={`mobile-filter-btn ${activeFilter === null ? "active" : ""}`}
                                 onClick={() => handleFilterClick(null)}
-                                title="All"
+                                title={t("views.project.all")}
                             >
-                                <span className="all-label">All</span>
+                                <span className="all-label">{t("views.project.all")}</span>
                             </button>
                             {techFilters.map((tech) => {
                                 const filterKey = getTechFilterKey(tech);
@@ -406,8 +405,8 @@ export default function Projects() {
                                 <div
                                     ref={(el) => { cardRefs.current[key] = el; }}
                                     className={`card z-0 transition ${getTechClass(values.primaryTech)} ${isSmallScreen
-                                            ? ""
-                                            : "animated disable-touch"
+                                        ? ""
+                                        : "animated disable-touch"
                                         } cursor-pointer relative
                                         ${!visibleMap[key] ? "paused" : ""}`}
                                     style={{
