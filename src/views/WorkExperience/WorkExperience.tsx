@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { fetchWorks, Work } from "@api/works";
 import "./WorkExperience.css";
@@ -16,8 +16,48 @@ export default function WorkExperience() {
     const currentLanguage = i18n.language;
     const [data, setData] = useState<Work[]>([]);
     const [selected, setSelected] = useState<Work | null>(null);
-    const [isFlipped, setIsFlipped] = useState<boolean>(false);
+    // Empieza mostrando el reverso hasta que carguen las fotos del primer trabajo
+    const [isFlipped, setIsFlipped] = useState<boolean>(true);
     const [showCarnet, setShowCarnet] = useState<boolean>(false);
+    // Imágenes del FRENTE del trabajo actual que ya cargaron (o fallaron).
+    // Disparan el auto-flip: cuando todas están, el carnet gira al frente.
+    const [loadedFrontKeys, setLoadedFrontKeys] = useState<Set<string>>(
+        () => new Set()
+    );
+    // Acumulador de sesión: claves frontales que YA cargaron alguna vez.
+    // Sirve para saber, al cambiar de trabajo, si sus fotos están listas ya
+    // (si el trabajo se visitó antes, están en caché del navegador).
+    const cachedFrontKeys = useRef<Set<string>>(new Set());
+
+    /** Claves de las imágenes del frente de un trabajo */
+    function frontKeysOf(value: Work): string[] {
+        return [
+            `flag-${value.country}`,
+            `bg-${value.image}`,
+            // Omito la foto si no existe para no bloquear el giro
+            value.idCard ? `idcard-${value.idCard}` : "",
+            `logo-${value.logo}`,
+        ].filter(Boolean);
+    }
+
+    /** Marca una imagen del frente como cargada (o con error) */
+    function markFrontLoaded(key: string) {
+        cachedFrontKeys.current.add(key); // acumula en la sesión
+        setLoadedFrontKeys((prev) => {
+            const next = new Set(prev);
+            next.add(key);
+            return next;
+        });
+    }
+
+    // Punto medio del giro: la transición es de 1s con easing "ease"
+    // (cubic-bezier(0.25, 0.1, 0.25, 1)), que NO es lineal. El 50% del ángulo
+    // (los 90°, donde el carnet queda perpendicular e invisible) se alcanza a
+    // ~t=0.474 del tiempo total = ~474ms. Usamos 470ms: un pelo antes, así la
+    // data cambia justo cuando el carnet está de canto y no se nota nada.
+    const MIDPOINT_MS = 320;
+    // Guarda el timer del punto medio para cancelarlo si se clic near rápido
+    const midTimeoutRef = useRef<number | null>(null);
 
     async function getWorks() {
         try {
@@ -35,12 +75,37 @@ export default function WorkExperience() {
         setShowCarnet(true);
         if (selected === value) return;
 
+        // 1) Inicia el vuelco (pase por la posición perpendicular)
         setIsFlipped((prev) => !prev);
-        setTimeout(() => {
+
+        // Cancela un punto medio pendiente del clic anterior
+        if (midTimeoutRef.current) clearTimeout(midTimeoutRef.current);
+
+        // 2) A mitad del giro cambia la data (el carnet está invisible)
+        midTimeoutRef.current = window.setTimeout(() => {
             setSelected(value);
-            setIsFlipped(false);
-        }, 300);
+
+            // 3) Aterriza según si las fotos del frente de este trabajo ya
+            //    cargaron antes en la sesión:
+            //    - Sí → "se devuelve": muestra el anverso con la foto.
+            //    - No → "termina el giro": muestra el reverso (texto).
+            const ready = frontKeysOf(value).every((k) =>
+                cachedFrontKeys.current.has(k)
+            );
+            setIsFlipped(!ready);
+        }, MIDPOINT_MS);
     }
+
+    // Auto-flip: cuando todas las fotos del frente del trabajo actual cargan,
+    // el carnet gira al frente aunque esté en pleno giro al reverso.
+    useEffect(() => {
+        if (!selected) return;
+
+        const keys = frontKeysOf(selected);
+        if (keys.every((k) => loadedFrontKeys.has(k))) {
+            setIsFlipped(false);
+        }
+    }, [selected, loadedFrontKeys]);
 
     type DateFormat = "long" | "short" | "monthYear";
     function formatDate({
@@ -268,7 +333,9 @@ export default function WorkExperience() {
                                 className={`carnet cursor-pointer ${
                                     isFlipped ? "is-flipped" : ""
                                 }`}
-                                onClick={() => setIsFlipped(!isFlipped)}
+                                onClick={() =>
+                                    setIsFlipped((prev) => !prev)
+                                }
                             >
                                 <div className="carnet-back face-content">
                                     <img
@@ -346,6 +413,18 @@ export default function WorkExperience() {
                                         className="flag"
                                         src={`${urlBase}images/corners/${selected.country}-corner.png`}
                                         alt={selected.logo}
+                                        loading="eager"
+                                        decoding="async"
+                                        onLoad={() =>
+                                            markFrontLoaded(
+                                                `flag-${selected.country}`
+                                            )
+                                        }
+                                        onError={() =>
+                                            markFrontLoaded(
+                                                `flag-${selected.country}`
+                                            )
+                                        }
                                     />
                                     <div className="secondary-top face-content" />
                                     <div className="primary-top face-content" />
@@ -359,10 +438,34 @@ export default function WorkExperience() {
                                         <img
                                             className="carnet-image-background absolute top-0 left-0 face-content"
                                             src={`${urlBase}images/works/${selected.image}`}
+                                            loading="eager"
+                                            decoding="async"
+                                            onLoad={() =>
+                                                markFrontLoaded(
+                                                    `bg-${selected.image}`
+                                                )
+                                            }
+                                            onError={() =>
+                                                markFrontLoaded(
+                                                    `bg-${selected.image}`
+                                                )
+                                            }
                                         />
                                         <img
                                             className="carnet-image face-content"
                                             src={`${urlBase}images/works/${selected.idCard}`}
+                                            loading="eager"
+                                            decoding="async"
+                                            onLoad={() =>
+                                                markFrontLoaded(
+                                                    `idcard-${selected.idCard}`
+                                                )
+                                            }
+                                            onError={() =>
+                                                markFrontLoaded(
+                                                    `idcard-${selected.idCard}`
+                                                )
+                                            }
                                         />
                                     </div>
                                     <div className="absolute info px-5 face-content">
@@ -379,6 +482,18 @@ export default function WorkExperience() {
                                     <div className="absolute logo face-content">
                                         <img
                                             src={`${urlBase}images/works/${selected.logo}`}
+                                            loading="eager"
+                                            decoding="async"
+                                            onLoad={() =>
+                                                markFrontLoaded(
+                                                    `logo-${selected.logo}`
+                                                )
+                                            }
+                                            onError={() =>
+                                                markFrontLoaded(
+                                                    `logo-${selected.logo}`
+                                                )
+                                            }
                                         />
                                     </div>
                                     <div className="absolute expiration text-white face-content">
