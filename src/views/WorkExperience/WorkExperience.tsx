@@ -112,9 +112,12 @@ export default function WorkExperience() {
         }, 470);
     }, [loading]);
 
+    useEffect(() => {
+        document.title = `Johan Román - ${t("links.workExperience")}`;
+    }, [t]);
+
     return (
         <>
-            <title>{`Johan Román - ${t("links.workExperience")}`}</title>
             <div className="view-works md:flex px-0 lg:px-20">
                 <div className="work-container">
                     <ol className="relative time-list md:pr-10">

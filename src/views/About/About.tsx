@@ -102,6 +102,10 @@ export default function About() {
         getSkills();
     }, []);
 
+    useEffect(() => {
+        document.title = `Johan Román - ${t("links.about")}`;
+    }, [t]);
+
     function handleChangeCategorySkills(category: number) {
         if (selectedCat === category) return;
         setShowCategories(!showCategories);
@@ -118,7 +122,6 @@ export default function About() {
 
     return (
         <>
-            <title>{`Johan Román - ${t("links.about")}`}</title>
             <div className="px-4 lg:px-20 xl:px-40 py-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                     <div className={`flex items-center`} ref={aboutTextRef}>

@@ -54,9 +54,12 @@ export default function PresentationSection() {
         return () => clearInterval(intervalId);
     }, []);
 
+    useEffect(() => {
+        document.title = `Johan Román - ${t("links.home")}`;
+    }, [t]);
+
     return (
         <div className="px-4 md:px-40 py-10">
-            <title>{`Johan Román - ${t("links.home")}`}</title>
             <div className="grid grid-1 md:grid-cols-2 gap-4">
                 <div
                     className={`place-content-center transition duration-500 ${

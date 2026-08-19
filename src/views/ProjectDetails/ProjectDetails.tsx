@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { FaCode } from "react-icons/fa";
 import { TfiClose } from "react-icons/tfi";
 import ConditionalLink from "@components/ConditionalLink/ConditionalLink";
+import NotFound from "../NotFoud/NotFoud";
 
 export interface ProjectDetailsProps {
     params: {
@@ -33,6 +34,7 @@ export default function ProductDetails({ params }: ProjectDetailsProps) {
     const [autoPlay, setAutoPlay] = useState<boolean>(true);
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [notFound, setNotFound] = useState<boolean>(false);
 
     const sliderRef = useRef<Slider>(null);
 
@@ -63,9 +65,13 @@ export default function ProductDetails({ params }: ProjectDetailsProps) {
 
     async function getProjectById() {
         const project = await fetchProjectById(parseInt(params.id));
-        if (!project) return;
+        if (!project) {
+            setNotFound(true);
+            return;
+        }
 
         setData(project);
+        setNotFound(false);
     }
 
     function showFullScreenImage(src: string | null) {
@@ -93,6 +99,12 @@ export default function ProductDetails({ params }: ProjectDetailsProps) {
     useEffect(() => {
         getProjectById();
     }, [params.id]);
+
+    useEffect(() => {
+        document.title = data
+            ? `${data.title} - Johan Román`
+            : `Johan Román - ${t("links.projects")}`;
+    }, [data, t]);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (zoomImage && fullscreenImage && imageRef.current) {
@@ -128,6 +140,10 @@ export default function ProductDetails({ params }: ProjectDetailsProps) {
             showFullScreenImage(img);
         }
     };
+
+    if (notFound) {
+        return <NotFound />;
+    }
 
     return (
         <div className="md:px-40">

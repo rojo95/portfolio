@@ -315,9 +315,12 @@ export default function Projects() {
         };
     }, []);
 
+    useEffect(() => {
+        document.title = `Johan Román - ${t("links.projects")}`;
+    }, [t]);
+
     return (
         <>
-            <title>{`Johan Román - ${t("links.projects")}`}</title>
             <div className="projects-layout">
                 {/* ===== PANEL LATERAL (DESKTOP) ===== */}
                 {data.length > 0 && (

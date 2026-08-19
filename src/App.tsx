@@ -109,7 +109,7 @@ function App() {
                                         type="button"
                                         className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 bg-gray-800 hover:bg-gray-700 hover:text-white focus:outline-hidden "
                                         aria-controls="mobile-menu"
-                                        aria-expanded="false"
+                                        aria-expanded={showMenu}
                                         onClick={() => setShowMenu(!showMenu)}
                                     >
                                         <span className="absolute -inset-0.5"></span>
@@ -235,7 +235,7 @@ function App() {
                         <div>
                             <a
                                 className="flex items-center gap-2 text-black dark:text-white transition hover:text-[#CF142B] drop-shadow-lg dark:hover:drop-shadow-cyan-300 dark:hover:drop-shadow-cyan-500/50"
-                                href="http://https://github.com/rojo95/"
+                                href="https://github.com/rojo95/"
                                 target="_blank"
                             >
                                 <FaGithub size={25} />
@@ -254,7 +254,7 @@ function App() {
                             <span>
                                 © 2025{" "}
                                 <Link
-                                    href={"/"}
+                                    href={urlBase}
                                     className="hover:underline text-black hover:text-black dark:text-cyan-300 dark:hover:text-cyan-300"
                                 >
                                     Johan Román
@@ -296,7 +296,7 @@ function App() {
                         >
                             © 2025{" "}
                             <Link
-                                href={"/"}
+                                href={urlBase}
                                 className="hover:underline text-black hover:text-black dark:text-cyan-300 dark:hover:text-cyan-300"
                             >
                                 Johan Román
