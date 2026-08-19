@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import About from "./views/About/About";
 import me from "@assets/images/johan_pixelart.webp";
 import ChangeLanguageButton from "@components/ChangeLanguageButton/ChangeLanguageButton";
+import Snowfall from "@components/Snowfall/Snowfall";
 import { useLoading } from "@hooks/useLoading/useLoading";
 import Projects from "./views/Projects/Projects";
 import ProjectDetails from "./views/ProjectDetails/ProjectDetails";
@@ -99,6 +100,7 @@ function App() {
 
     return (
         <div className="content">
+            <Snowfall />
             <div>
                 <header>
                     <nav className="bg-gray-800">

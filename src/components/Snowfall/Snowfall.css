@@ -1,0 +1,35 @@
+/* Nieve ligera: animada por GPU con transform, sin JS por frame */
+.snowfall {
+    position: fixed;
+    inset: 0;
+    z-index: 40; /* encima del contenido, bajo modales/fullscreen (z-50) */
+    pointer-events: none; /* no bloquea clics */
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    border-radius: 9999px;
+    background: #cffafe; /* cyan suave, acorde a la paleta */
+    will-change: transform; /* le dice al navegador que anime por compositor */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: snowfall-fall;
+}
+
+@keyframes snowfall-fall {
+    0% {
+        transform: translate3d(var(--drift, 0), -10px, 0);
+    }
+    100% {
+        transform: translate3d(calc(var(--drift, 0) * -1), 105vh, 0);
+    }
+}
+
+/* Respeto por usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .snowfall {
+        display: none;
+    }
+}
