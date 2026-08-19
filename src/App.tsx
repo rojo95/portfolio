@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import About from "./views/About/About";
 import me from "@assets/images/johan_pixelart.webp";
 import ChangeLanguageButton from "@components/ChangeLanguageButton/ChangeLanguageButton";
+import ThemeSwitch from "@components/ThemeSwitch/ThemeSwitch";
 import Snowfall from "@components/Snowfall/Snowfall";
 import { useLoading } from "@hooks/useLoading/useLoading";
 import Projects from "./views/Projects/Projects";
@@ -148,7 +149,10 @@ function App() {
                                     </div>
                                 </div>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                    <ChangeLanguageButton />
+                                    <div className="flex items-center gap-2">
+                                        <ThemeSwitch />
+                                        <ChangeLanguageButton />
+                                    </div>
                                 </div>
                             </div>
                         </div>
