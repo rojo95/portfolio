@@ -170,6 +170,9 @@
     height: 500px;
     transform-style: preserve-3d;
     transition: transform 1s;
+    box-shadow:
+        0 25px 40px -12px rgba(0, 0, 0, 0.45),
+        0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .carnet-back,
