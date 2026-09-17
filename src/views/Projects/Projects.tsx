@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./Projects.css";
 import { useTranslation } from "react-i18next";
 import { fetchProjects, Project } from "@api/projects";
@@ -12,6 +12,7 @@ import { Link } from "wouter";
 import { useLoading } from "@hooks/useLoading/useLoading";
 import loadingProjImg from "@assets/images/loading-project.webp";
 import useIntersectionList from "@hooks/useIntersectionList/useIntersectionList";
+import useTilt from "@hooks/useTilt/useTilt";
 
 const TECH = {
     REACT: 1,
@@ -31,6 +32,12 @@ const PLATFORMS = {
 } as const;
 
 const urlBase = import.meta.env.BASE_URL;
+
+const TILT = {
+    MAX: 18,
+    PERSPECTIVE: 1000,
+    SCALE: 1.02,
+} as const;
 
 function getTechClass(techId: number): string {
     switch (techId) {
@@ -66,17 +73,165 @@ function getFilterKey(t: { name: string; image?: string | null }): string | null
     return t.image;
 }
 
+interface ProjectCardProps {
+    project: Project;
+    index: number;
+    isSmallScreen: boolean;
+    isFilterTransitioning: boolean;
+    isVisible: boolean;
+    setCardRef: (index: number, el: HTMLDivElement | null) => void;
+}
+
+const ProjectCard = memo(function ProjectCard({
+    project,
+    index,
+    isSmallScreen,
+    isFilterTransitioning,
+    isVisible,
+    setCardRef,
+}: ProjectCardProps) {
+    const cardElRef = useRef<HTMLDivElement | null>(null);
+    const reanimateTimer = useRef<number | null>(null);
+    const [thumbLoaded, setThumbLoaded] = useState(false);
+    const { onMouseEnter: tiltEnter, onMouseMove: tiltMove, onMouseLeave: tiltLeave } =
+        useTilt<HTMLDivElement>({
+            ref: cardElRef,
+            max: TILT.MAX,
+            perspective: TILT.PERSPECTIVE,
+            scale: TILT.SCALE,
+            disabled: isSmallScreen,
+        });
+
+    const combineRef = useCallback(
+        (el: HTMLDivElement | null) => {
+            cardElRef.current = el;
+            setCardRef(index, el);
+        },
+        [index, setCardRef]
+    );
+
+    const handleMouseEnter = () => {
+        if (isSmallScreen) return;
+        const el = cardElRef.current;
+        if (!el) return;
+        if (reanimateTimer.current !== null) {
+            window.clearTimeout(reanimateTimer.current);
+            reanimateTimer.current = null;
+        }
+        el.classList.remove("animated");
+        tiltEnter();
+    };
+
+    const handleCardMouseLeave = () => {
+        if (isSmallScreen) return;
+        const el = cardElRef.current;
+        if (!el) return;
+        tiltLeave();
+        reanimateTimer.current = window.setTimeout(() => {
+            el.classList.add("animated");
+            reanimateTimer.current = null;
+        }, 2500);
+    };
+
+    useEffect(() => {
+        return () => {
+            if (reanimateTimer.current !== null) {
+                window.clearTimeout(reanimateTimer.current);
+            }
+        };
+    }, []);
+
+    return (
+        <Link
+            href={`${urlBase}projects/${project.id}`}
+            className={`${isFilterTransitioning ? "fade-out-filter" : "fade-in"}`}
+            style={{
+                animationDelay: isFilterTransitioning
+                    ? "0s"
+                    : `${index * 0.15}s`,
+            }}
+        >
+            <div
+                ref={combineRef}
+                className={`card z-0 transition ${getTechClass(project.primaryTech)} ${isSmallScreen
+                    ? ""
+                    : "animated"
+                    } cursor-pointer relative
+                    ${!isVisible ? "paused" : ""}`}
+                style={{
+                    animationDelay: `${index * 0.5}s`,
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseMove={tiltMove}
+                onMouseLeave={handleCardMouseLeave}
+            >
+                {!thumbLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/70 z-20">
+                        <img
+                            className="proj-thumb blur"
+                            src={loadingProjImg}
+                            alt={`loading-${index}`}
+                        />
+                        <div className="animate-spin border-t-4 border-blue-500 border-solid rounded-full w-16 h-16"></div>
+                    </div>
+                )}
+                <>
+                    <img
+                        className="proj-thumb"
+                        src={`images/projects/${project.thumb}`}
+                        alt="background"
+                        loading="lazy"
+                        decoding="async"
+                        onLoad={() => setThumbLoaded(true)}
+                    />
+                    <div className="z-10 pointer-events-none absolute top-4 left-4 grid grid-cols-1 gap-1">
+                        <div className="hexagon bg-gray-200 size-10 grid place-items-center">
+                            <img
+                                width={30}
+                                src={`images/knowledge/${getTechImage(project.primaryTech)}.webp`}
+                                alt={"knowledge" + project.primaryTech}
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        {project.platforms.includes(PLATFORMS.DESKTOP) ? (
+                            <div className="rounded-full size-6 grid place-items-center bg-gray-200 text-black">
+                                <FaDesktop className="size-4" />
+                            </div>
+                        ) : null}
+
+                        {project.platforms.includes(PLATFORMS.TABLET) ? (
+                            <div className="rounded-full size-6 grid place-items-center bg-gray-200 text-black">
+                                <FaTabletScreenButton className="size-4" />
+                            </div>
+                        ) : null}
+
+                        {project.platforms.includes(PLATFORMS.MOBILE) ? (
+                            <div className="rounded-full size-6 grid place-items-center bg-gray-200 text-black">
+                                <FaMobileScreen className="size-4" />
+                            </div>
+                        ) : null}
+
+                        {project.platforms.includes(PLATFORMS.ANDROID) ? (
+                            <div className="rounded-full size-6 grid place-items-center bg-gray-200 text-black">
+                                <DiAndroid className="size-4" />
+                            </div>
+                        ) : null}
+                    </div>
+                    <p className="z-10 proj-title absolute py-2 px-3 text-sm font-semibold border-text text-gray-800 z-0 bottom-10 w-full text-center pointer-events-none">
+                        {project.title}
+                    </p>
+                </>
+            </div>
+        </Link>
+    );
+});
+
 export default function Projects() {
     const { t } = useTranslation();
     const { loading } = useLoading();
     const [data, setData] = useState<Project[]>([]);
     const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
-    const imagesLoaded = useRef<Set<number>>(new Set());
-    const hoveredCard = useRef<{
-        el: HTMLDivElement;
-        cleanup: () => void;
-    } | null>(null);
-    const [, forceUpdate] = useReducer(x => x + 1, 0);
 
     // Filter state
     const [activeFilter, setActiveFilter] = useState<string | null>(null);
@@ -152,103 +307,9 @@ export default function Projects() {
         options: { rootMargin: "100px" },
     });
 
-    const updateCardEffect = (card: HTMLDivElement, pos: [number, number]) => {
-        const l = pos[0];
-        const t = pos[1];
-        const h = card.clientHeight;
-        const w = card.clientWidth;
-        const px = Math.abs(Math.floor((100 / w) * l) - 100);
-        const py = Math.abs(Math.floor((100 / h) * t) - 100);
-        const pa = 50 - px + (50 - py);
-        const lp = 50 + (px - 50) / 1.5;
-        const tp = 50 + (py - 50) / 1.5;
-        const px_spark = 50 + (px - 50) / 7;
-        const py_spark = 50 + (py - 50) / 7;
-        const p_opc = 20 + Math.abs(pa) * 1.5;
-        const ty = ((tp - 50) / 2) * -1;
-        const tx = ((lp - 50) / 1.5) * 0.5;
-
-        card.style.setProperty("--gx", `${lp}%`);
-        card.style.setProperty("--gy", `${tp}%`);
-        card.style.setProperty("--sx", `${px_spark}%`);
-        card.style.setProperty("--sy", `${py_spark}%`);
-        card.style.setProperty("--op", `${p_opc / 100}`);
-        card.style.transform = `rotateX(${ty}deg) rotateY(${tx}deg)`;
-    };
-
-    const handleMouseEnter = (el: HTMLDivElement) => {
-        if (isSmallScreen) return;
-
-        if (hoveredCard.current) {
-            hoveredCard.current.cleanup();
-        }
-
-        el.classList.remove("animated");
-
-        let rafId: number;
-        let lastPos: [number, number] | null = null;
-
-        const handleMouseMove = (e: MouseEvent | TouchEvent) => {
-            let pos: [number, number];
-            e.preventDefault();
-            if ("touches" in e) {
-                pos = [e.touches[0].clientX, e.touches[0].clientY];
-            } else {
-                pos = [e.offsetX, e.offsetY];
-            }
-
-            if (
-                lastPos &&
-                Math.abs(pos[0] - lastPos[0]) < 3 &&
-                Math.abs(pos[1] - lastPos[1]) < 3
-            ) {
-                return;
-            }
-            lastPos = pos;
-
-            cancelAnimationFrame(rafId);
-            rafId = requestAnimationFrame(() => updateCardEffect(el, pos));
-        };
-
-        const handleMouseLeave = () => {
-            cancelAnimationFrame(rafId);
-            el.removeAttribute("style");
-            setTimeout(() => {
-                el.classList.add("animated");
-            }, 2500);
-        };
-
-        el.addEventListener("mousemove", handleMouseMove, { passive: true });
-        el.addEventListener("touchmove", handleMouseMove, { passive: true });
-        el.addEventListener("mouseleave", handleMouseLeave);
-        el.addEventListener("touchend", handleMouseLeave);
-        el.addEventListener("touchcancel", handleMouseLeave);
-
-        hoveredCard.current = {
-            el,
-            cleanup: () => {
-                cancelAnimationFrame(rafId);
-                el.removeEventListener("mousemove", handleMouseMove);
-                el.removeEventListener("touchmove", handleMouseMove);
-                el.removeEventListener("mouseleave", handleMouseLeave);
-                el.removeEventListener("touchend", handleMouseLeave);
-                el.removeEventListener("touchcancel", handleMouseLeave);
-                el.removeAttribute("style");
-            },
-        };
-    };
-
-    const handleMouseLeave = () => {
-        if (hoveredCard.current) {
-            hoveredCard.current.cleanup();
-            hoveredCard.current = null;
-        }
-    };
-
-    const handleImageLoad = (index: number) => {
-        imagesLoaded.current.add(index);
-        forceUpdate();
-    };
+    const setCardRef = useCallback((index: number, el: HTMLDivElement | null) => {
+        cardRefs.current[index] = el;
+    }, [cardRefs]);
 
     async function getProjects() {
         try {
@@ -256,7 +317,6 @@ export default function Projects() {
             if (!data) return;
             const { projects } = data;
             setData(projects);
-            imagesLoaded.current = new Set();
         } catch (error) {
             console.error(error);
         }
@@ -309,9 +369,6 @@ export default function Projects() {
 
         return () => {
             mediaQuery.removeEventListener("change", handleMediaQueryChange);
-            if (hoveredCard.current) {
-                hoveredCard.current.cleanup();
-            }
         };
     }, []);
 
@@ -348,6 +405,8 @@ export default function Projects() {
                                     <img
                                         src={`images/knowledge/${tech.image}`}
                                         alt={tech.name}
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 </button>
                             );
@@ -378,6 +437,8 @@ export default function Projects() {
                                         <img
                                             src={`images/knowledge/${tech.image}`}
                                             alt={tech.name}
+                                            loading="lazy"
+                                            decoding="async"
                                         />
                                     </button>
                                 );
@@ -395,100 +456,15 @@ export default function Projects() {
                         </p>
                     ) : (
                         displayData.map((values, key) => (
-                            <Link
-                                href={`${urlBase}projects/${values.id}`}
+                            <ProjectCard
                                 key={values.id}
-                                className={`${isFilterTransitioning ? "fade-out-filter" : "fade-in"}`}
-                                style={{
-                                    animationDelay: isFilterTransitioning
-                                        ? "0s"
-                                        : `${key * 0.15}s`,
-                                }}
-                            >
-                                <div
-                                    ref={(el) => { cardRefs.current[key] = el; }}
-                                    className={`card z-0 transition ${getTechClass(values.primaryTech)} ${isSmallScreen
-                                        ? ""
-                                        : "animated disable-touch"
-                                        } cursor-pointer relative
-                                        ${!visibleMap[key] ? "paused" : ""}`}
-                                    style={{
-                                        animationDelay: `${key * 0.5}s`,
-                                    }}
-                                    onMouseEnter={(e) =>
-                                        !isSmallScreen &&
-                                        handleMouseEnter(e.currentTarget)
-                                    }
-                                    onMouseLeave={() =>
-                                        !isSmallScreen && handleMouseLeave()
-                                    }
-                                >
-                                    {!imagesLoaded.current.has(key) && (
-                                        <div className="absolute inset-0 flex items-center justify-center bg-white/70 z-20">
-                                            <img
-                                                className="proj-thumb blur"
-                                                src={loadingProjImg}
-                                                alt={`loading-${key}`}
-                                            />
-                                            <div className="animate-spin border-t-4 border-blue-500 border-solid rounded-full w-16 h-16"></div>
-                                        </div>
-                                    )}
-                                    <>
-                                        <img
-                                            className="proj-thumb"
-                                            src={`images/projects/${values.thumb}`}
-                                            alt="background"
-                                            onLoad={() => handleImageLoad(key)}
-                                        />
-                                        <div className="z-10 pointer-events-none absolute top-4 left-4 grid grid-cols-1 gap-1">
-                                            <div className="hexagon bg-gray-200 size-10 grid place-items-center">
-                                                <img
-                                                    width={30}
-                                                    src={`images/knowledge/${getTechImage(values.primaryTech)}.webp`}
-                                                    alt={
-                                                        "knowledge" +
-                                                        values.primaryTech
-                                                    }
-                                                />
-                                            </div>
-                                            {values.platforms.includes(
-                                                PLATFORMS.DESKTOP
-                                            ) ? (
-                                                <div className="rounded-full size-6 grid place-items-center bg-gray-200 text-black">
-                                                    <FaDesktop className="size-4" />
-                                                </div>
-                                            ) : null}
-
-                                            {values.platforms.includes(
-                                                PLATFORMS.TABLET
-                                            ) ? (
-                                                <div className="rounded-full size-6 grid place-items-center bg-gray-200 text-black">
-                                                    <FaTabletScreenButton className="size-4" />
-                                                </div>
-                                            ) : null}
-
-                                            {values.platforms.includes(
-                                                PLATFORMS.MOBILE
-                                            ) ? (
-                                                <div className="rounded-full size-6 grid place-items-center bg-gray-200 text-black">
-                                                    <FaMobileScreen className="size-4" />
-                                                </div>
-                                            ) : null}
-
-                                            {values.platforms.includes(
-                                                PLATFORMS.ANDROID
-                                            ) ? (
-                                                <div className="rounded-full size-6 grid place-items-center bg-gray-200 text-black">
-                                                    <DiAndroid className="size-4" />
-                                                </div>
-                                            ) : null}
-                                        </div>
-                                        <p className="z-10 proj-title absolute py-2 px-3 text-sm font-semibold border-text text-gray-800 z-0 bottom-10 w-full text-center pointer-events-none">
-                                            {values.title}
-                                        </p>
-                                    </>
-                                </div>
-                            </Link>
+                                project={values}
+                                index={key}
+                                isSmallScreen={isSmallScreen}
+                                isFilterTransitioning={isFilterTransitioning}
+                                isVisible={!!visibleMap[key]}
+                                setCardRef={setCardRef}
+                            />
                         ))
                     )}
                 </section>
