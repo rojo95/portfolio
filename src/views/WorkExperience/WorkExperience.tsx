@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { fetchWorks, Work } from "@api/works";
 import "./WorkExperience.css";
@@ -7,6 +7,7 @@ import ConditionalLink from "@components/ConditionalLink/ConditionalLink";
 import { FaCode } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { useLoading } from "@hooks/useLoading/useLoading";
+import { useViewExit } from "@hooks/useViewTransition/useViewTransition";
 
 const urlBase = import.meta.env.BASE_URL;
 
@@ -16,6 +17,11 @@ export default function WorkExperience() {
     const currentLanguage = i18n.language;
     const [data, setData] = useState<Work[]>([]);
     const [selected, setSelected] = useState<Work | null>(null);
+    const [leaving, setLeaving] = useState<boolean>(false);
+    const [carnetGone, setCarnetGone] = useState<boolean>(false);
+    const dataRef = useRef<Work[]>([]);
+    const exitTimerRef = useRef<number | null>(null);
+    const carnetHalfTimerRef = useRef<number | null>(null);
     // Empieza mostrando el reverso hasta que carguen las fotos del primer trabajo
     const [isFlipped, setIsFlipped] = useState<boolean>(true);
     const [showCarnet, setShowCarnet] = useState<boolean>(false);
@@ -64,12 +70,49 @@ export default function WorkExperience() {
             const work = await fetchWorks();
             if (!work) return;
 
+            dataRef.current = work;
             setData(work);
             setSelected(work[0]);
         } catch (error) {
             console.error(error);
         }
     }
+
+    const EXIT_STAGGER_MS = 200;
+    const CARD_EXIT_MS = 300;
+    const CONNECT_EXIT_MS = 1000;
+    const CARNET_HALF_MS = 500;
+
+    function exitDurationFor(count: number): number {
+        if (count <= 0) return CARD_EXIT_MS;
+        return (count - 1) * EXIT_STAGGER_MS + CONNECT_EXIT_MS;
+    }
+
+    const handleExit = useCallback(() => {
+        return new Promise<void>((resolve) => {
+            setLeaving(true);
+            if (exitTimerRef.current) window.clearTimeout(exitTimerRef.current);
+            exitTimerRef.current = window.setTimeout(
+                resolve,
+                exitDurationFor(dataRef.current.length)
+            );
+            if (carnetHalfTimerRef.current)
+                window.clearTimeout(carnetHalfTimerRef.current);
+            carnetHalfTimerRef.current = window.setTimeout(() => {
+                setCarnetGone(true);
+            }, CARNET_HALF_MS);
+        });
+    }, []);
+
+    useViewExit(handleExit);
+
+    useEffect(() => {
+        return () => {
+            if (exitTimerRef.current) window.clearTimeout(exitTimerRef.current);
+            if (carnetHalfTimerRef.current)
+                window.clearTimeout(carnetHalfTimerRef.current);
+        };
+    }, []);
 
     function handleChangeJob(value: Work) {
         setShowCarnet(true);
@@ -99,13 +142,13 @@ export default function WorkExperience() {
     // Auto-flip: cuando todas las fotos del frente del trabajo actual cargan,
     // el carnet gira al frente aunque esté en pleno giro al reverso.
     useEffect(() => {
-        if (!selected) return;
+        if (!selected || leaving) return;
 
         const keys = frontKeysOf(selected);
         if (keys.every((k) => loadedFrontKeys.has(k))) {
             setIsFlipped(false);
         }
-    }, [selected, loadedFrontKeys]);
+    }, [selected, loadedFrontKeys, leaving]);
 
     type DateFormat = "long" | "short" | "monthYear";
     function formatDate({
@@ -196,12 +239,18 @@ export default function WorkExperience() {
                                 <div className="time-line" />
                                 <div
                                     className={`time-conector ${
+                                        leaving ? "connect-out" : ""
+                                    } ${
                                         key % 2 === 0
                                             ? "from-right"
                                             : "from-left"
                                     }`}
                                     style={{
-                                        animationDelay: `${key * 0.2}s`,
+                                        animationDelay: `${
+                                            (leaving
+                                                ? data.length - 1 - key
+                                                : key) * 0.2
+                                        }s`,
                                     }}
                                 >
                                     <div
@@ -225,11 +274,17 @@ export default function WorkExperience() {
                                 </div>
                                 <div
                                     onClick={() => handleChangeJob(value)}
-                                    className={`work-card rotation-in dark:bg-gray-100 hover:shadow-cyan-400 cursor-pointer ${
+                                    className={`work-card ${
+                                        leaving ? "rotation-out" : "rotation-in"
+                                    } dark:bg-gray-100 hover:shadow-cyan-400 cursor-pointer ${
                                         key % 2 === 0 ? "right" : "left"
                                     }`}
                                     style={{
-                                        animationDelay: `${key * 0.2}s`,
+                                        animationDelay: `${
+                                            (leaving
+                                                ? data.length - 1 - key
+                                                : key) * 0.2
+                                        }s`,
                                     }}
                                 >
                                     <div
@@ -320,6 +375,10 @@ export default function WorkExperience() {
                                     ? "opacity-100"
                                     : "opacity-0 pointer-events-none md:pointer-events-auto md:opacity-100"
                             }`}
+                            style={{
+                                opacity: carnetGone ? 0 : undefined,
+                                pointerEvents: carnetGone ? "none" : undefined,
+                            }}
                         >
                             <div
                                 className="carnet-background-div"
@@ -332,7 +391,7 @@ export default function WorkExperience() {
                             <div
                                 className={`carnet cursor-pointer ${
                                     isFlipped ? "is-flipped" : ""
-                                }`}
+                                } ${leaving ? "carnet-exit" : ""}`}
                                 onClick={() =>
                                     setIsFlipped((prev) => !prev)
                                 }

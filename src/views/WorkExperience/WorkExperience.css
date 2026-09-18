@@ -101,6 +101,54 @@
     }
 }
 
+.rotation-out {
+    opacity: 0;
+    perspective: 1000px;
+}
+.rotation-out.left {
+    transform: translateX(-50px);
+    animation: rotationOutLeft 0.3s both;
+}
+.rotation-out.right {
+    transform: translateX(50px);
+    animation: rotationOutRight 0.3s both;
+}
+
+@keyframes rotationOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+}
+
+@keyframes rotationOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+.connect-out {
+    animation: connectOut 1s both;
+}
+
+@keyframes connectOut {
+    from {
+        width: 40%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
 .work-info {
     width: 100%;
 }
@@ -191,6 +239,11 @@
 
 .carnet.is-flipped {
     transform: rotateY(180deg);
+}
+
+.carnet-exit {
+    transition: transform 0.5s ease;
+    transform: rotateY(90deg) !important;
 }
 
 .carnet-back {
@@ -444,6 +497,25 @@
         transform: translateY(-20px);
         animation: rotationIn 0.3s forwards;
         perspective: 1000px;
+    }
+    .rotation-out,
+    .rotation-out.left,
+    .rotation-out.right {
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: rotationOutTop 0.3s both;
+        perspective: 1000px;
+    }
+}
+
+@keyframes rotationOutTop {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 }
 @media (min-width: 640px) {
