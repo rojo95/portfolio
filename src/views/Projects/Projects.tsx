@@ -13,6 +13,7 @@ import { useLoading } from "@hooks/useLoading/useLoading";
 import loadingProjImg from "@assets/images/loading-project.webp";
 import useIntersectionList from "@hooks/useIntersectionList/useIntersectionList";
 import useTilt from "@hooks/useTilt/useTilt";
+import { useViewExit } from "@hooks/useViewTransition/useViewTransition";
 
 const TECH = {
     REACT: 1,
@@ -76,8 +77,10 @@ function getFilterKey(t: { name: string; image?: string | null }): string | null
 interface ProjectCardProps {
     project: Project;
     index: number;
+    count: number;
     isSmallScreen: boolean;
     isFilterTransitioning: boolean;
+    isLeaving: boolean;
     isVisible: boolean;
     setCardRef: (index: number, el: HTMLDivElement | null) => void;
 }
@@ -85,8 +88,10 @@ interface ProjectCardProps {
 const ProjectCard = memo(function ProjectCard({
     project,
     index,
+    count,
     isSmallScreen,
     isFilterTransitioning,
+    isLeaving,
     isVisible,
     setCardRef,
 }: ProjectCardProps) {
@@ -144,11 +149,17 @@ const ProjectCard = memo(function ProjectCard({
     return (
         <Link
             href={`${urlBase}projects/${project.id}`}
-            className={`${isFilterTransitioning ? "fade-out-filter" : "fade-in"}`}
+            className={`${
+                isFilterTransitioning || isLeaving
+                    ? "fade-out-filter"
+                    : "fade-in"
+            }`}
             style={{
                 animationDelay: isFilterTransitioning
                     ? "0s"
-                    : `${index * 0.15}s`,
+                    : isLeaving
+                        ? `${(count - 1 - index) * 0.15}s`
+                        : `${index * 0.15}s`,
             }}
         >
             <div
@@ -232,6 +243,9 @@ export default function Projects() {
     const { loading } = useLoading();
     const [data, setData] = useState<Project[]>([]);
     const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
+    const [leaving, setLeaving] = useState<boolean>(false);
+    const displayDataRef = useRef(0);
+    const exitTimerRef = useRef<number | null>(null);
 
     // Filter state
     const [activeFilter, setActiveFilter] = useState<string | null>(null);
@@ -321,6 +335,37 @@ export default function Projects() {
             console.error(error);
         }
     }
+
+    useEffect(() => {
+        displayDataRef.current = displayData.length;
+    });
+
+    const EXIT_STAGGER_MS = 150;
+    const EXIT_DURATION_MS = 350;
+
+    function exitDurationFor(count: number): number {
+        if (count <= 0) return EXIT_DURATION_MS;
+        return (count - 1) * EXIT_STAGGER_MS + EXIT_DURATION_MS;
+    }
+
+    const handleExit = useCallback(() => {
+        return new Promise<void>((resolve) => {
+            setLeaving(true);
+            if (exitTimerRef.current) window.clearTimeout(exitTimerRef.current);
+            exitTimerRef.current = window.setTimeout(
+                resolve,
+                exitDurationFor(displayDataRef.current)
+            );
+        });
+    }, []);
+
+    useViewExit(handleExit);
+
+    useEffect(() => {
+        return () => {
+            if (exitTimerRef.current) window.clearTimeout(exitTimerRef.current);
+        };
+    }, []);
 
     // Detectar scroll en el panel para aplicar fade
     useEffect(() => {
@@ -460,8 +505,10 @@ export default function Projects() {
                                 key={values.id}
                                 project={values}
                                 index={key}
+                                count={displayData.length}
                                 isSmallScreen={isSmallScreen}
                                 isFilterTransitioning={isFilterTransitioning}
+                                isLeaving={leaving}
                                 isVisible={!!visibleMap[key]}
                                 setCardRef={setCardRef}
                             />
