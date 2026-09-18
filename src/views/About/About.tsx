@@ -12,9 +12,10 @@ import { useTranslation } from "react-i18next";
 import { changeLanguage } from "i18next";
 import { useLoading } from "@hooks/useLoading/useLoading";
 import cedula from "@assets/images/cedula.webp";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { Category, fetchSkills, Technology } from "@api/skills";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useViewExit } from "@hooks/useViewTransition/useViewTransition";
 
 export default function About() {
     const { t, i18n } = useTranslation();
@@ -25,6 +26,9 @@ export default function About() {
     const [showPtPhoto, setShowPtPhoto] = useState<boolean>(false);
     const [changingSkills, setChangingSkills] = useState<boolean>(false);
     const [showCategories, setShowCategories] = useState<boolean>(false);
+    const [leaving, setLeaving] = useState<boolean>(false);
+    const skillsCountRef = useRef(0);
+    const exitTimerRef = useRef<number | null>(null);
 
     const { loading, startLoading, stopLoading } = useLoading();
 
@@ -103,6 +107,35 @@ export default function About() {
     }, []);
 
     useEffect(() => {
+        skillsCountRef.current = skills.filter(
+            (v) => v.category_id === selectedCat
+        ).length;
+    }, [skills, selectedCat]);
+
+    function exitDurationFor(count: number): number {
+        return Math.max(1000, Math.max(0, count - 1) * 50 + 500);
+    }
+
+    const handleExit = useCallback(() => {
+        return new Promise<void>((resolve) => {
+            setLeaving(true);
+            if (exitTimerRef.current) window.clearTimeout(exitTimerRef.current);
+            exitTimerRef.current = window.setTimeout(
+                resolve,
+                exitDurationFor(skillsCountRef.current)
+            );
+        });
+    }, []);
+
+    useViewExit(handleExit);
+
+    useEffect(() => {
+        return () => {
+            if (exitTimerRef.current) window.clearTimeout(exitTimerRef.current);
+        };
+    }, []);
+
+    useEffect(() => {
         document.title = `Johan Román - ${t("links.about")}`;
     }, [t]);
 
@@ -120,6 +153,10 @@ export default function About() {
         setShowCategories(!showCategories);
     }
 
+    const visibleSkills = skills.filter(
+        (v) => v.category_id === selectedCat
+    );
+
     return (
         <>
             <div className="px-4 lg:px-20 xl:px-40 py-10">
@@ -127,7 +164,7 @@ export default function About() {
                     <div className={`flex items-center`} ref={aboutTextRef}>
                         <div
                             className={`py-3 transition duration-500 ${
-                                aboutTextIsIntersecting && !loading
+                                aboutTextIsIntersecting && !loading && !leaving
                                     ? "opacity-100 pointer-events-auto translate-x-0"
                                     : "opacity-0 pointer-events-none -translate-x-10"
                             }`}
@@ -142,7 +179,7 @@ export default function About() {
                     <div className={`h-[350px] flex justify-center `}>
                         <div
                             className={`flex mb-20 justify-center items-center relative transition duration-500 perspective-dramatic ${
-                                ocIsIntersecting
+                                ocIsIntersecting && !leaving
                                     ? "opacity-100 pointer-events-auto translate-x-0"
                                     : "opacity-0 pointer-events-none translate-x-10"
                             }`}
@@ -185,7 +222,7 @@ export default function About() {
                             <div ref={elemRefEs}>
                                 <div
                                     className={`flex flex-col items-center transition duration-500 ${
-                                        refEsIsIntersecting && !loading
+                                        refEsIsIntersecting && !loading && !leaving
                                             ? "opacity-100 pointer-events-auto translate-y-0"
                                             : "opacity-0 pointer-events-none translate-y-10"
                                     }`}
@@ -212,7 +249,7 @@ export default function About() {
                             <div ref={elemRefEn}>
                                 <div
                                     className={`flex flex-col items-center transition duration-500 md:delay-300 ${
-                                        refEnIsIntersecting && !loading
+                                        refEnIsIntersecting && !loading && !leaving
                                             ? "opacity-100 pointer-events-auto translate-y-0"
                                             : "opacity-0 pointer-events-none translate-y-10"
                                     }`}
@@ -239,7 +276,7 @@ export default function About() {
                             <div ref={elemRefPt}>
                                 <div
                                     className={`flex flex-col items-center transition duration-500 md:duration-300 md:delay-500 ${
-                                        refPtIsIntersecting && !loading
+                                        refPtIsIntersecting && !loading && !leaving
                                             ? "opacity-100 pointer-events-auto translate-y-0"
                                             : "opacity-0 pointer-events-none translate-y-10"
                                     }`}
@@ -294,7 +331,7 @@ export default function About() {
                         <div
                             ref={educationRef}
                             className={`transition diration-500 md:px-10 ${
-                                educationIsIntersecting && !loading
+                                educationIsIntersecting && !loading && !leaving
                                     ? "opacity-100 pointer-events-auto translate-x-0"
                                     : "opacity-0 pointer-events-none translate-x-10"
                             }`}
@@ -352,7 +389,7 @@ export default function About() {
                         >
                             <div
                                 className={`button-skills absolute top-1.5 -right-4 md:end-2 transition duration-300 lg:hidden cursor-pointer z-10 rounded-full p-1 ${
-                                    skillsIsIntersecting && !loading
+                                    skillsIsIntersecting && !loading && !leaving
                                         ? "opacity-100 pointer-events-auto"
                                         : "opacity-0 pointer-events-none"
                                 }`}
@@ -362,7 +399,7 @@ export default function About() {
                             </div>
                             <h2
                                 className={`text-4xl mb-4 transition duration-500 ${
-                                    skillsIsIntersecting && !loading
+                                    skillsIsIntersecting && !loading && !leaving
                                         ? "opacity-100 pointer-events-auto translate-y-0"
                                         : "opacity-0 pointer-events-none -translate-y-10"
                                 }`}
@@ -382,7 +419,8 @@ export default function About() {
                                                 }
                                                 className={`transition duration-500 ${
                                                     skillsIsIntersecting &&
-                                                    !loading
+                                                    !loading &&
+                                                    !leaving
                                                         ? "opacity-100 pointer-events-auto translate-x-0"
                                                         : "opacity-0 pointer-events-none -translate-x-10"
                                                 }`}
@@ -417,13 +455,7 @@ export default function About() {
                                 </div>
                                 <div className="w-full py-20">
                                     <div className="w-full flex flex-wrap gap-5 justify-center items-center">
-                                        {skills
-                                            .filter(
-                                                (v) =>
-                                                    v.category_id ===
-                                                    selectedCat
-                                            )
-                                            .map((values, key) => (
+                                        {visibleSkills.map((values, key) => (
                                                 <a
                                                     key={key}
                                                     href={values.link}
@@ -431,8 +463,14 @@ export default function About() {
                                                 >
                                                     <div
                                                         style={{
-                                                            animationDelay:
-                                                                !changingSkills
+                                                            animationDelay: leaving
+                                                                ? `${
+                                                                      (visibleSkills.length -
+                                                                          1 -
+                                                                          key) *
+                                                                      0.05
+                                                                  }s`
+                                                                : !changingSkills
                                                                     ? `${
                                                                           key *
                                                                           0.05
@@ -442,9 +480,12 @@ export default function About() {
                                                         className={`w-[120px] h-[120px] p-4 flex justify-center items-center bg-gray-300 rounded-full dark:drop-shadow-[15px_15px_10px_rgba(0,0,0,0.6)] drop-shadow-[15px_15px_10px_rgba(0,0,0,0.3)] transition duration-300 hover:scale-110 ${
                                                             skillsIsIntersecting &&
                                                             !loading &&
-                                                            !changingSkills
+                                                            !changingSkills &&
+                                                            !leaving
                                                                 ? "arriving-skill"
-                                                                : "leaving-skill"
+                                                                : leaving
+                                                                    ? "leaving-view-skill"
+                                                                    : "leaving-skill"
                                                         } `}
                                                     >
                                                         <div className="dark:drop-shadow-[15px_15px_6px_rgba(0,0,0,0.5)] drop-shadow-[15px_15px_6px_rgba(0,0,0,0.2)]">
