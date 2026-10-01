@@ -12,7 +12,7 @@ export default function Spiderwebs() {
       <img
         src={web2}
         alt=""
-        className="fixed top-0 right-0 z-[9999] pointer-events-none brightness-50 dark:brightness-100"
+        className="fixed top-0 right-0 z-[9999] pointer-events-none brightness-50 dark:brightness-100 w-[250px]"
       />
 
       <img
@@ -25,7 +25,7 @@ export default function Spiderwebs() {
       <img
         src={web}
         alt=""
-        className="fixed -bottom-40 -left-40 z-[9999] pointer-events-none brightness-0 dark:invert"
+        className="fixed -bottom-40 -left-40 z-[9999] pointer-events-none brightness-0 dark:invert w-[350px]"
       />
     </>
   ) : null;
