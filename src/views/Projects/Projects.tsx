@@ -213,7 +213,7 @@ const ProjectCard = memo(function ProjectCard({
         <>
           <img
             className="proj-thumb"
-            src={`images/projects/${project.thumb}`}
+            src={`${urlBase}images/projects/${project.thumb}`}
             alt="background"
             loading="lazy"
             decoding="async"
@@ -223,7 +223,7 @@ const ProjectCard = memo(function ProjectCard({
             <div className="hexagon bg-gray-200 size-10 grid place-items-center">
               <img
                 width={30}
-                src={`images/knowledge/${getTechImage(project.primaryTech)}.webp`}
+                src={`${urlBase}images/knowledge/${getTechImage(project.primaryTech)}.webp`}
                 alt={"knowledge" + project.primaryTech}
                 loading="lazy"
                 decoding="async"
@@ -476,7 +476,7 @@ export default function Projects() {
                   title={tech.name}
                 >
                   <img
-                    src={`images/knowledge/${tech.image}`}
+                    src={`${urlBase}images/knowledge/${tech.image}`}
                     alt={tech.name}
                     loading="lazy"
                     decoding="async"
@@ -508,7 +508,7 @@ export default function Projects() {
                     title={tech.name}
                   >
                     <img
-                      src={`images/knowledge/${tech.image}`}
+                      src={`${urlBase}images/knowledge/${tech.image}`}
                       alt={tech.name}
                       loading="lazy"
                       decoding="async"

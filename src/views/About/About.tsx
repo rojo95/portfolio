@@ -17,6 +17,8 @@ import { Category, fetchSkills, Technology } from "@api/skills";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useViewExit, EXIT_SPEED } from "@hooks/useViewTransition/useViewTransition";
 
+const urlBase = import.meta.env.BASE_URL;
+
 export default function About() {
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
@@ -510,7 +512,7 @@ className={`text-4xl mb-4 transition ${
                                                     >
                                                         <div className="dark:drop-shadow-[15px_15px_6px_rgba(0,0,0,0.5)] drop-shadow-[15px_15px_6px_rgba(0,0,0,0.2)]">
                                                             <img
-                                                                src={`images/knowledge/${values.img}`}
+                                                                src={`${urlBase}images/knowledge/${values.img}`}
                                                                 alt={values.img}
                                                             />
                                                         </div>
