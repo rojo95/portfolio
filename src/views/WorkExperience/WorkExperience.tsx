@@ -7,7 +7,7 @@ import ConditionalLink from "@components/ConditionalLink/ConditionalLink";
 import { FaCode } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { useLoading } from "@hooks/useLoading/useLoading";
-import { useViewExit } from "@hooks/useViewTransition/useViewTransition";
+import { useViewExit, EXIT_SPEED } from "@hooks/useViewTransition/useViewTransition";
 
 const urlBase = import.meta.env.BASE_URL;
 
@@ -78,10 +78,10 @@ export default function WorkExperience() {
         }
     }
 
-    const EXIT_STAGGER_MS = 200;
-    const CARD_EXIT_MS = 300;
-    const CONNECT_EXIT_MS = 1000;
-    const CARNET_HALF_MS = 500;
+    const EXIT_STAGGER_MS = 200 / EXIT_SPEED;
+    const CARD_EXIT_MS = 300 / EXIT_SPEED;
+    const CONNECT_EXIT_MS = 1000 / EXIT_SPEED;
+    const CARNET_HALF_MS = 500 / EXIT_SPEED;
 
     function exitDurationFor(count: number): number {
         if (count <= 0) return CARD_EXIT_MS;
@@ -248,8 +248,9 @@ export default function WorkExperience() {
                                     style={{
                                         animationDelay: `${
                                             (leaving
-                                                ? data.length - 1 - key
-                                                : key) * 0.2
+                                                ? (data.length - 1 - key) *
+                                                  (EXIT_STAGGER_MS / 1000)
+                                                : key * 0.2)
                                         }s`,
                                     }}
                                 >
@@ -282,8 +283,9 @@ export default function WorkExperience() {
                                     style={{
                                         animationDelay: `${
                                             (leaving
-                                                ? data.length - 1 - key
-                                                : key) * 0.2
+                                                ? (data.length - 1 - key) *
+                                                  (EXIT_STAGGER_MS / 1000)
+                                                : key * 0.2)
                                         }s`,
                                     }}
                                 >

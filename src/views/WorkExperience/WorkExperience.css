@@ -107,11 +107,11 @@
 }
 .rotation-out.left {
     transform: translateX(-50px);
-    animation: rotationOutLeft 0.3s both;
+    animation: rotationOutLeft 0.2s both;
 }
 .rotation-out.right {
     transform: translateX(50px);
-    animation: rotationOutRight 0.3s both;
+    animation: rotationOutRight 0.2s both;
 }
 
 @keyframes rotationOutLeft {
@@ -137,7 +137,7 @@
 }
 
 .connect-out {
-    animation: connectOut 1s both;
+    animation: connectOut 0.667s both;
 }
 
 @keyframes connectOut {
@@ -242,7 +242,7 @@
 }
 
 .carnet-exit {
-    transition: transform 0.5s ease;
+    transition: transform 0.333s ease;
     transform: rotateY(90deg) !important;
 }
 
@@ -503,7 +503,7 @@
     .rotation-out.right {
         opacity: 0;
         transform: translateY(-20px);
-        animation: rotationOutTop 0.3s both;
+        animation: rotationOutTop 0.2s both;
         perspective: 1000px;
     }
 }

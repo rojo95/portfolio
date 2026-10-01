@@ -4,6 +4,8 @@ import type { BrowserLocationHook } from "wouter/use-browser-location";
 
 export type ViewExitHandler = () => Promise<void>;
 
+export const EXIT_SPEED = 1.5;
+
 let exitHandler: ViewExitHandler | null = null;
 let navigationInFlight = false;
 let pendingNavigation: (() => void) | null = null;

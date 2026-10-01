@@ -86,7 +86,7 @@
 }
 
 .leaving-view-skill {
-    animation: leavingViewSkill 0.5s forwards;
+    animation: leavingViewSkill 0.333s forwards;
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0%);

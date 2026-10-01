@@ -15,7 +15,7 @@ import cedula from "@assets/images/cedula.webp";
 import { useEffect, useRef, useCallback, useState } from "react";
 import { Category, fetchSkills, Technology } from "@api/skills";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useViewExit } from "@hooks/useViewTransition/useViewTransition";
+import { useViewExit, EXIT_SPEED } from "@hooks/useViewTransition/useViewTransition";
 
 export default function About() {
     const { t, i18n } = useTranslation();
@@ -113,7 +113,10 @@ export default function About() {
     }, [skills, selectedCat]);
 
     function exitDurationFor(count: number): number {
-        return Math.max(1000, Math.max(0, count - 1) * 50 + 500);
+        return (
+            Math.max(1000, Math.max(0, count - 1) * 50 + 500) /
+            EXIT_SPEED
+        );
     }
 
     const handleExit = useCallback(() => {
@@ -163,7 +166,7 @@ export default function About() {
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                     <div className={`flex items-center`} ref={aboutTextRef}>
                         <div
-                            className={`py-3 transition duration-500 ${
+                            className={`py-3 transition ${leaving ? "duration-300" : "duration-500"} ${
                                 aboutTextIsIntersecting && !loading && !leaving
                                     ? "opacity-100 pointer-events-auto translate-x-0"
                                     : "opacity-0 pointer-events-none -translate-x-10"
@@ -178,7 +181,7 @@ export default function About() {
 
                     <div className={`h-[350px] flex justify-center `}>
                         <div
-                            className={`flex mb-20 justify-center items-center relative transition duration-500 perspective-dramatic ${
+                            className={`flex mb-20 justify-center items-center relative transition ${leaving ? "duration-300" : "duration-500"} perspective-dramatic ${
                                 ocIsIntersecting && !leaving
                                     ? "opacity-100 pointer-events-auto translate-x-0"
                                     : "opacity-0 pointer-events-none translate-x-10"
@@ -221,7 +224,7 @@ export default function About() {
                         <div className="grid grid-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-10">
                             <div ref={elemRefEs}>
                                 <div
-                                    className={`flex flex-col items-center transition duration-500 ${
+                                    className={`flex flex-col items-center transition ${leaving ? "duration-300" : "duration-500"} ${
                                         refEsIsIntersecting && !loading && !leaving
                                             ? "opacity-100 pointer-events-auto translate-y-0"
                                             : "opacity-0 pointer-events-none translate-y-10"
@@ -248,7 +251,11 @@ export default function About() {
                             </div>
                             <div ref={elemRefEn}>
                                 <div
-                                    className={`flex flex-col items-center transition duration-500 md:delay-300 ${
+                                    className={`flex flex-col items-center transition ${
+                                        leaving
+                                            ? "duration-300 md:delay-200"
+                                            : "duration-500 md:delay-300"
+                                    } ${
                                         refEnIsIntersecting && !loading && !leaving
                                             ? "opacity-100 pointer-events-auto translate-y-0"
                                             : "opacity-0 pointer-events-none translate-y-10"
@@ -275,7 +282,11 @@ export default function About() {
                             </div>
                             <div ref={elemRefPt}>
                                 <div
-                                    className={`flex flex-col items-center transition duration-500 md:duration-300 md:delay-500 ${
+                                    className={`flex flex-col items-center transition ${
+                                        leaving
+                                            ? "duration-300 md:duration-300 md:delay-300"
+                                            : "duration-500 md:duration-300 md:delay-500"
+                                    } ${
                                         refPtIsIntersecting && !loading && !leaving
                                             ? "opacity-100 pointer-events-auto translate-y-0"
                                             : "opacity-0 pointer-events-none translate-y-10"
@@ -388,7 +399,9 @@ export default function About() {
                             ref={skillsRef}
                         >
                             <div
-                                className={`button-skills absolute top-1.5 -right-4 md:end-2 transition duration-300 lg:hidden cursor-pointer z-10 rounded-full p-1 ${
+                                className={`button-skills absolute top-1.5 -right-4 md:end-2 transition ${
+                                        leaving ? "duration-200" : "duration-300"
+                                    } lg:hidden cursor-pointer z-10 rounded-full p-1 ${
                                     skillsIsIntersecting && !loading && !leaving
                                         ? "opacity-100 pointer-events-auto"
                                         : "opacity-0 pointer-events-none"
@@ -398,8 +411,10 @@ export default function About() {
                                 <BsThreeDotsVertical size={25} />
                             </div>
                             <h2
-                                className={`text-4xl mb-4 transition duration-500 ${
-                                    skillsIsIntersecting && !loading && !leaving
+className={`text-4xl mb-4 transition ${
+                                        leaving ? "duration-300" : "duration-500"
+                                    } ${
+                                        skillsIsIntersecting && !loading && !leaving
                                         ? "opacity-100 pointer-events-auto translate-y-0"
                                         : "opacity-0 pointer-events-none -translate-y-10"
                                 }`}
@@ -417,7 +432,11 @@ export default function About() {
                                                         id
                                                     )
                                                 }
-                                                className={`transition duration-500 ${
+                                                className={`transition ${
+                                                    leaving
+                                                        ? "duration-300"
+                                                        : "duration-500"
+                                                } ${
                                                     skillsIsIntersecting &&
                                                     !loading &&
                                                     !leaving
@@ -468,7 +487,8 @@ export default function About() {
                                                                       (visibleSkills.length -
                                                                           1 -
                                                                           key) *
-                                                                      0.05
+                                                                      (0.05 /
+                                                                          EXIT_SPEED)
                                                                   }s`
                                                                 : !changingSkills
                                                                     ? `${
