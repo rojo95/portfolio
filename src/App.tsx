@@ -1,4 +1,4 @@
-import { Link, Redirect, Route, Switch, useLocation } from "wouter";
+import { Link, Redirect, Route, Switch, useRoute } from "wouter";
 import "./App.css";
 import Home from "./views/Home/Home";
 import "./i18n";
@@ -68,10 +68,8 @@ interface NavLinkProps {
 
 const NavLink: React.FC<NavLinkProps> = ({ href, children, displayed }) => {
   const { loading } = useLoading();
-  const [location] = useLocation();
 
-  // Asegura que la comparación sea correcta
-  const isActive = location === href;
+  const [isActive] = useRoute(href);
 
   return (
     <Link

@@ -24,6 +24,12 @@ export function useViewExit(handler: ViewExitHandler) {
     }, []);
 }
 
+const normalize = (path: string) =>
+    path.length > 1 ? path.replace(/\/+$/, "") : path;
+
+const toPath = (to: string | URL) =>
+    to instanceof URL ? to.pathname : to;
+
 export const useViewTransition: BrowserLocationHook = (options) => {
     const [location, setLocation] = useBrowserLocation(options);
 
@@ -31,6 +37,11 @@ export const useViewTransition: BrowserLocationHook = (options) => {
         to: string | URL,
         options?: { replace?: boolean; state?: unknown }
     ) => {
+        // Si el destino es la ruta ya activa, no hay nada que animar: la URL
+        // no cambiaria, la vista no se remontaria y quedaria congelada en su
+        // animacion de salida.
+        if (normalize(toPath(to)) === normalize(location)) return;
+
         const perform = () => setLocation(to, options);
 
         const handler = exitHandler;
